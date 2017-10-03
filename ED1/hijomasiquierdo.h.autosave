@@ -1,0 +1,16 @@
+#ifndef HIJOMASIQUIERDO_H
+#define HIJOMASIQUIERDO_H
+
+struct nodo{
+   nodo* HijoMasIz
+    
+};
+
+
+class Arbol
+{
+public:
+    Arbol();
+};
+
+#endif // HIJOMASIQUIERDO_H
