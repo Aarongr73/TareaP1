@@ -8,6 +8,7 @@ private:
     int elemento;
     int* entrada;
     int* salida;
+    int numElem;
 public:
     void Crear();
     void Destruir();

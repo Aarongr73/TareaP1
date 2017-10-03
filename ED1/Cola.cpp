@@ -6,6 +6,7 @@ using namespace std;
 void Cola::Crear(){
     salida = &vec_circ[0];
     entrada = salida;
+    numElem = 0;
 }
 
 void Cola::Destruir(){
@@ -15,6 +16,7 @@ void Cola::Destruir(){
 void Cola::Vaciar(){
     salida = &vec_circ[0];
     entrada = salida;
+    numElem = 0;
 }
 
 bool Cola::Vacia(){
@@ -30,7 +32,12 @@ int Cola::Desencolar(){
         cout<<"Pila vacia."<<endl;
     }
     elemento = *salida;
-    ++salida;
+    if(*salida > MAX-1){
+        salida = 0;
+    }else{
+        salida++;
+    }
+    numElem--;
     return elemento;
 }
 
@@ -40,7 +47,12 @@ void Cola::Encolar(int elemento){
         return;
     }
     *entrada = elemento;
-    ++entrada;
+    if(*entrada > MAX-1){
+        entrada = 0;
+    }else{
+        entrada++;
+    }
+    numElem++;
 }
 
 int Cola::Frente(){
