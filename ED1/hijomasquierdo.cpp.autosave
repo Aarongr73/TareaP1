@@ -1,6 +1,0 @@
-#include "hijomasiquierdo.h"
-
-Arbol::Arbol()
-{
-
-}
