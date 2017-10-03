@@ -8,6 +8,7 @@ private:
     int elemento;
     int* entrada;
     int* salida;
+    int numElem;
 public:
     void Crear();
     void Destruir();
@@ -17,4 +18,4 @@ public:
     int Desencolar();
     int Frente();
 };
-#endif // COLA_ED
+#endif // COLA_E
