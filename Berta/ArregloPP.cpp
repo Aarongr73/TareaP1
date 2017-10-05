@@ -34,7 +34,7 @@ bool Arbol::Raiz(Nodo n){
 	}
 }
 
-Nodo Arbol::HijoMasIzq(Nodo n){
+Nodo Arbol::HMI(Nodo n){
 	int pos = Buscar(n.etiqueta);
 	int i = pos;
 	while (Arreglo[i].nodoPadre != pos) {
@@ -43,7 +43,7 @@ Nodo Arbol::HijoMasIzq(Nodo n){
 	return Arreglo[i];
 }
 
-Nodo Arbol::HermanoDer(Nodo n){
+Nodo Arbol::HD(Nodo n){
 	int pos = Buscar(n) + 1;
 	if ( Arreglo[pos] == n.nodoPadre ) {
 		return Arreglo[pos];
@@ -88,7 +88,7 @@ int Arbol::NumHijos(Nodo n){
 	return numh;
 }
 
-void Arbol::ModifEtiq(Nodo n, char e){
+void Arbol::ModificarEtiqueta(Nodo n, char e){
 	n.etiqueta = e;
 }
 
@@ -124,6 +124,7 @@ void Arbol::BorrarHoja(Nodo n){
 	while (i <= NumNodos()) {
 		Arreglo[i+1] = Arreglo[i]
 	}
+	--numNodos;
 }
 
 void Arbol::PonerRaiz(char e){

@@ -24,14 +24,14 @@ class Arbol {
 		void Vaciar();
 		bool Vacio();
 		bool Raiz(Nodo);
-		Nodo HijoMasIzq(Nodo);
-		Nodo HermanoDer(Nodo);
+		Nodo HMI(Nodo);
+		Nodo HD(Nodo);
 		Nodo Padre(Nodo);
 		Nodo EsHoja(Nodo);
 		char Etiqueta(Nodo);
 		int NumNodos();
 		int NumHijos(Nodo);
-		void ModifEtiq(Nodo, char);
+		void ModificarEtiqueta(Nodo, char);
 		Nodo AgregarHijo(Nodo, char);
 		void BorrarHoja(Nodo);
 		void PonerRaiz(char);
