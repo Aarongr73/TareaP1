@@ -212,8 +212,7 @@ int main()
     arbol.AgregarHijoI_esimo(arbol.Buscar(8), 10,3);
     arbol.BorrarHoja(arbol.Buscar(2));
     arbol.AgregarHijoI_esimo(arbol.Buscar(10), 11,1);
-
-     arbol.BorrarHoja(arbol.Buscar(11));
+    arbol.BorrarHoja(arbol.Buscar(11));
 
 
 
