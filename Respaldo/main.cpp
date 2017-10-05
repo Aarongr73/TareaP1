@@ -1,7 +1,7 @@
 #include <iostream>
 //#include "ArbolLista.h"
 //#include "hijomasizquierdo.h"
-#include "hijomasizq3.h"
+#include "hijomasizq2.h"
 //#include "hijomasizq3.h"
 #include "Cola.h"
 //#include "ArbolLista.h"
@@ -202,8 +202,9 @@ int main()
       cola.Crear();
       cola.Encolar(8);
       cola.Desencolar();*/
-      menu();
-
+   //   menu();
+    Arbol arbol;
+    menu();
 
 
 
