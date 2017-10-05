@@ -47,32 +47,34 @@ void Arbol::PonerRaiz(int etiqueta){
     raiz->Etiqueta=etiqueta;
     this->Elementos++;
 }
-Node *Arbol::AgregarHijoI_esimo(Node *padre, int etiqueta){
+Node *Arbol::AgregarHijoI_esimo(Node *padre, int etiqueta, int pos){
     NodoPrincipal* nuevoHijo=new NodoPrincipal();
     nuevoHijo->Etiqueta=etiqueta;
     if(padre->Hmi==nullptr){
         padre->Hmi=nuevoHijo;
     }else{
-        if(nuevoHijo->Etiqueta<padre->Hmi->Etiqueta){
+        if(pos==1){
             nuevoHijo->HD=padre->Hmi;
             padre->Hmi=nuevoHijo;
-        }else{
-            Node* nodoAux=padre->Hmi;
-            bool Noinsertado=true;
-            while(nodoAux!=nullptr && Noinsertado){
-                if(nodoAux->HD!=nullptr){
-                    if(nuevoHijo->Etiqueta>nodoAux->Etiqueta && nuevoHijo->Etiqueta<nodoAux->HD->Etiqueta){
-                        nuevoHijo->HD=nodoAux->HD;
-                        nodoAux->HD=nuevoHijo;
-                        Noinsertado=false;
-                    }
-                }else{
-                    nodoAux->HD=nuevoHijo;
-                    Noinsertado=false;
-                }
-                nodoAux=nodoAux->HD;
+        }else if(pos==NumHijos(padre)+1){
+            NodoPrincipal* Actual=padre->Hmi;
+            while(Actual->HD!=nullptr){
+                Actual=Actual->HD;
             }
+            Actual->HD=nuevoHijo;
+        }else{
+            int cont=1;
+            NodoPrincipal* previo=nullptr;
+            NodoPrincipal* Actual=padre->Hmi;
+            while(cont<=pos-1){
+                previo=Actual;
+                Actual=Actual->HD;
+                ++cont;
+            }
+                nuevoHijo->HD=Actual;
+                previo->HD=nuevoHijo;
         }
+
     }
     this->Elementos++;
 }

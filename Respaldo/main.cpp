@@ -209,10 +209,15 @@ int main()
     arbol.PonerRaiz(8);
     arbol.AgregarHijoI_esimo(arbol.Buscar(8), 6,1);
     arbol.AgregarHijoI_esimo(arbol.Buscar(8), 2,2);
+    arbol.AgregarHijoI_esimo(arbol.Buscar(8), 3,3);
     arbol.AgregarHijoI_esimo(arbol.Buscar(8), 10,3);
-    arbol.BorrarHoja(arbol.Buscar(2));
-    arbol.AgregarHijoI_esimo(arbol.Buscar(10), 11,1);
-    arbol.BorrarHoja(arbol.Buscar(11));
+
+     arbol.AgregarHijoI_esimo(arbol.Buscar(3), 4,1);
+      arbol.AgregarHijoI_esimo(arbol.Buscar(3), 5,2);
+       arbol.AgregarHijoI_esimo(arbol.Buscar(3), 9,3);
+       arbol.BorrarHoja(arbol.Buscar(4));
+       arbol.BorrarHoja(arbol.Buscar(9));
+       arbol.BorrarHoja(arbol.Buscar(5));
 
 
 

@@ -71,9 +71,9 @@ NodoPrincipal* Arbol::AgregarHijoI_esimo(NodePrincipal* padre,double Etiqueta,in
              int cont=1;
              NodeHijos* previo=nullptr;
              NodeHijos* Actual=padre->PrimerHijo;
-             while(cont<=pos){
+             while(cont<=pos-1){
                  previo=Actual;
-                 Actual=Actual;
+                 Actual=Actual->next;
                  ++cont;
              }
                  nuevoHijo->next=Actual;

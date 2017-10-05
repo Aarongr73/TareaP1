@@ -29,7 +29,7 @@ public:
     NodoPrincipal* Raiz();
     void DestruirR(Node* nodo);
     void PonerRaiz(int etiqueta);
-    Node* AgregarHijoI_esimo(Node* padre,int etiqueta);
+    Node* AgregarHijoI_esimo(Node* padre,int etiqueta,int pos);
     void Crear();
     Node *Buscar(int etiqueta);
     Node* PreOrdenBusqueda(Node* nodo,int etiqueta,Node* buscado);
