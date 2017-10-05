@@ -11,27 +11,28 @@ struct Nodo{
 
 typedef Nodo NodoPrincipal;
 
-class ArregloPP {
+class Arbol {
 
 	private:
-		struct Nodo Arreglo[MAX];
-		int contador;
+		Nodo Arreglo[MAX];
+		int numNodos;
 
 	public:
-		ArregloPP();
-    ~ArregloPP();
+		Arbol();
+    ~Arbol();
+		void Crear();
 		void Vaciar();
 		bool Vacio();
 		bool Raiz(Nodo);
-		struct Nodo HijoMasIzq(Nodo);
-		struct Nodo HermanoDer(Nodo);
-		struct Nodo Padre(Nodo);
-		struct Nodo EsHoja(Nodo);
+		Nodo HijoMasIzq(Nodo);
+		Nodo HermanoDer(Nodo);
+		Nodo Padre(Nodo);
+		Nodo EsHoja(Nodo);
 		char Etiqueta(Nodo);
 		int NumNodos();
 		int NumHijos(Nodo);
 		void ModifEtiq(Nodo, char);
-		void AgregarHijo(Nodo, char);
+		Nodo AgregarHijo(Nodo, char);
 		void BorrarHoja(Nodo);
 		void PonerRaiz(char);
 		int Buscar(char);

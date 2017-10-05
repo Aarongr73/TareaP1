@@ -1,35 +1,40 @@
-#include "ArregloPP.h"
+#include "Arbol.h"
 
-ArregloPP::ArregloPP(){
+Arbol::Arbol(){
 	PonerRaiz(' ');
 	Arreglo[0].nodoPadre = 0;
+	numNodos = 1;
 }
 
-ArregloPP::~ArregloPP(){
+Arbol::~Arbol(){
 	//Como es estático no se necesita destructor.
 }
 
-void ArregloPP::Vaciar(){
-	Arreglo[NumNodos()].nodoPadre = 0;
-	// Preguntar
+void Arbol::Crear(){
+	Arbol();
 }
 
-bool ArregloPP::Vacio(){
+void Arbol::Vaciar(){
+	Arreglo[NumNodos()].nodoPadre = 0;
+	numNodos = 0;
+}
+
+bool Arbol::Vacio(){
 	if (Arreglo[NumNodos()].nodoPadre == 0) {
 		return 1;
 	}
 	return 0;
 }
 
-bool ArregloPP::Raiz(Nodo n){
+bool Arbol::Raiz(Nodo n){
 	if(Arreglo[0].etiqueta == n.etiqueta) {
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
 
-Nodo ArregloPP::HijoMasIzq(Nodo n){
+Nodo Arbol::HijoMasIzq(Nodo n){
 	int pos = Buscar(n.etiqueta);
 	int i = pos;
 	while (Arreglo[i].nodoPadre != pos) {
@@ -38,7 +43,7 @@ Nodo ArregloPP::HijoMasIzq(Nodo n){
 	return Arreglo[i];
 }
 
-Nodo ArregloPP::HermanoDer(Nodo n){
+Nodo Arbol::HermanoDer(Nodo n){
 	int pos = Buscar(n) + 1;
 	if ( Arreglo[pos] == n.nodoPadre ) {
 		return Arreglo[pos];
@@ -47,11 +52,11 @@ Nodo ArregloPP::HermanoDer(Nodo n){
 	}
 }
 
-Nodo ArregloPP::Padre(Nodo n){
+Nodo Arbol::Padre(Nodo n){
 	return Arreglo[n.nodoPadre];
 }
 
-Nodo ArregloPP::EsHoja(Nodo n){
+Nodo Arbol::EsHoja(Nodo n){
 	int pos = Buscar(n.etiqueta);
 	int i = pos;
 	while(Arreglo[i].nodoPadre != pos && pos <= NumnNodos()) {
@@ -64,15 +69,15 @@ Nodo ArregloPP::EsHoja(Nodo n){
 	}
 }
 
-char ArregloPP::Etiqueta(Nodo n) {
+char Arbol::Etiqueta(Nodo n) {
 	return n.etiqueta;
 }
 
-int ArregloPP::NumNodos() { //Preguntar porque es O(1)
-	return contador;
+int Arbol::NumNodos() {
+	return numNodos;
 }
 
-int ArregloPP::NumHijos(Nodo n){
+int Arbol::NumHijos(Nodo n){
 	int numh = 0;
 	int pos = Buscar(HijoMasIzq(n).etiqueta);
 	int i = pos;
@@ -83,14 +88,15 @@ int ArregloPP::NumHijos(Nodo n){
 	return numh;
 }
 
-void ArregloPP::ModifEtiq(Nodo n, char e){
+void Arbol::ModifEtiq(Nodo n, char e){
 	n.etiqueta = e;
 }
 
-void ArregloPP::AgregarHijo(Nodo n, char e, int p){
+Nodo Arbol::AgregarHijo(Nodo n, char e, int p){
 	int pos = Buscar(n.etiqueta);
 	int i = pos;
 	int contador = 0;
+	int j = NumNodos();
 
 	Nodo nuevo;
 	nuevo.nodoPadre = pos;
@@ -100,19 +106,33 @@ void ArregloPP::AgregarHijo(Nodo n, char e, int p){
 		++contador;
 	}
 
+	while (j >= pos) {
+		Arreglo[j+1] = Arreglo[j];
+		--j;
+	}
+
+	Arreglo[pos] = nuevo;
+	++numNodos;
+
+return n;
+
 }
 
-void ArregloPP::BorrarHoja(Nodo n){
-
+void Arbol::BorrarHoja(Nodo n){
+	int pos = Buscar(n.etiqueta);
+	int i = pos
+	while (i <= NumNodos()) {
+		Arreglo[i+1] = Arreglo[i]
+	}
 }
 
-void ArregloPP::PonerRaiz(char e){
+void Arbol::PonerRaiz(char e){
 	Arreglo[0].etiqueta = e;
 }
 
-int ArregloPP::Buscar(char e) {
+int Arbol::Buscar(char e) {
 	int i = 0;
-	while(Arreglo[i].etiqueta != n.etiqueta) {
+	while (Arreglo[i].etiqueta != n.etiqueta) {
 		++i;
 	}
 	return i;
