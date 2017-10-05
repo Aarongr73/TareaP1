@@ -1,7 +1,7 @@
 #include <iostream>
-//#include "ArbolLista.h"
+#include "ArbolLista.h"
 //#include "hijomasizquierdo.h"
-#include "hijomasizq2.h"
+//#include "hijomasizq2.h"
 //#include "hijomasizq3.h"
 #include "Cola.h"
 //#include "ArbolLista.h"
@@ -46,11 +46,12 @@ do{
         case 3:
             int etiquetaPadre;
             int etiquetaHijo;
+            int pos;
             cout<<"Introduzca el la etiqueta de padre\n";
             cin>>etiquetaPadre;
             cout<<"Introduzca la etiqueta del hijo\n";
             cin>>etiquetaHijo;
-            arbol.AgregarHijoI_esimo(arbol.Buscar(etiquetaPadre),etiquetaHijo);
+            arbol.AgregarHijoI_esimo(arbol.Buscar(etiquetaPadre),etiquetaHijo,pos);
             break;
         case 4:
             int nodoABorrar;
@@ -204,7 +205,16 @@ int main()
       cola.Desencolar();*/
    //   menu();
     Arbol arbol;
-    menu();
+    arbol.Crear();
+    arbol.PonerRaiz(8);
+    arbol.AgregarHijoI_esimo(arbol.Buscar(8), 6,1);
+    arbol.AgregarHijoI_esimo(arbol.Buscar(8), 2,2);
+    arbol.AgregarHijoI_esimo(arbol.Buscar(8), 10,3);
+    arbol.BorrarHoja(arbol.Buscar(2));
+    arbol.AgregarHijoI_esimo(arbol.Buscar(10), 11,1);
+
+     arbol.BorrarHoja(arbol.Buscar(11));
+
 
 
 

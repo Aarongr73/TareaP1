@@ -42,7 +42,7 @@ void Arbol::PonerRaiz(int etiqueta){
 NodoPrincipal* Arbol::HMI(NodoPrincipal* nodo){
     return nodo->PrimerHijo->listaPrincipal;
 }
-NodoPrincipal* Arbol::AgregarHijoI_esimo(NodePrincipal* padre,double Etiqueta){
+NodoPrincipal* Arbol::AgregarHijoI_esimo(NodePrincipal* padre,double Etiqueta,int pos){
      NodoPrincipal* nuevo=new NodoPrincipal(Etiqueta);
      NodeHijos* nuevoHijo=new NodeHijos();
 
@@ -52,32 +52,35 @@ NodoPrincipal* Arbol::AgregarHijoI_esimo(NodePrincipal* padre,double Etiqueta){
         nuevo->siguiente=this->Raiz()->siguiente;
         this->Raiz()->siguiente=nuevo;
      }
-     if(padre->PrimerHijo==nullptr){
+     if(padre->PrimerHijo==nullptr ){
          padre->PrimerHijo=nuevoHijo;
          nuevoHijo->listaPrincipal=nuevo;
      }else{
-         NodeHijos* nodoAux=padre->PrimerHijo;
-         if(Etiqueta<nodoAux->listaPrincipal->Etiqueta){
+         int cont=1;
+         if(pos==1){
              nuevoHijo->next=padre->PrimerHijo;
              padre->PrimerHijo=nuevoHijo;
-         }else{
-             bool salir=true;
-             while(nodoAux!=nullptr && salir){
-                 if(nodoAux->next==nullptr){
-                     nodoAux->next=nuevoHijo;
-                     salir=false;
-                 }else{
-                     if(nodoAux->listaPrincipal->Etiqueta<Etiqueta && nodoAux->next->listaPrincipal->Etiqueta>Etiqueta){
-                         nuevoHijo->next=nodoAux->next;
-                         nodoAux->next=nuevoHijo;
-                         salir=false;
-                     }
-                 }
-                 nodoAux=nodoAux->next;
+
+         }else if(pos==NumHijos(padre)+1){
+             NodeHijos* Actual=padre->PrimerHijo;
+             while(Actual->next!=nullptr){
+                 Actual=Actual->next;
              }
+             Actual->next=nuevoHijo;
+         }else{
+             int cont=1;
+             NodeHijos* previo=nullptr;
+             NodeHijos* Actual=padre->PrimerHijo;
+             while(cont<=pos){
+                 previo=Actual;
+                 Actual=Actual;
+                 ++cont;
+             }
+                 nuevoHijo->next=Actual;
+                 previo->next=nuevoHijo;
          }
-         nuevoHijo->listaPrincipal=nuevo;
      }
+     nuevoHijo->listaPrincipal=nuevo;
      this->Elementos++;
      return nuevo;
  }
@@ -100,9 +103,7 @@ void Arbol::BorrarHoja(NodoPrincipal* nodo){
              }
         }
      if((NoEliminadoLista || NoEliminadoSublista)){
-        if(Actual!=nullptr){
-            Actual=nodoActual->PrimerHijo;
-        }
+        Actual=nodoActual->PrimerHijo;
         Previo=nullptr;
         while (Actual!=nullptr && NoEliminadoSublista) {
             NodeHijos* nodoAux=Actual;

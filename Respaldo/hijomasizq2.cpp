@@ -56,6 +56,9 @@ void Arbol::BorrarHoja(nodo* hoja){
                bool noEliminado=true;
                while(Actual!=0 && noEliminado){
                    if(Actual==hoja){
+                       if(Actual->EsUltimo){
+                           previo->EsUltimo=true;
+                       }
                        previo->HD=Actual->HD;
                        noEliminado=false;
                    }
@@ -64,6 +67,7 @@ void Arbol::BorrarHoja(nodo* hoja){
                    Actual=Actual->HD;
                    }
                }
+
 
         }
     }
@@ -96,7 +100,6 @@ nodo* Arbol::Raiz(){
 nodo* Arbol::AgregarHijoI_esimo(nodo* padre, int etiqueta){
     nodo* nuevoHijo = new nodo();
     nuevoHijo->Etiqueta = etiqueta;
-    nuevoHijo->padre = padre;
     ++numNodos;
     if(padre->HMI==0){
         padre->HMI = nuevoHijo;
@@ -104,7 +107,6 @@ nodo* Arbol::AgregarHijoI_esimo(nodo* padre, int etiqueta){
         if(nuevoHijo->Etiqueta < padre->HMI->Etiqueta){
             nuevoHijo->HD = padre->HMI;
             padre->HMI = nuevoHijo;
-            //nuevoHijo->HD->HI = nuevoHijo;
         }else{
             nodo* nodoAux = padre->HMI;
             bool Noinsertado = true;
@@ -113,13 +115,14 @@ nodo* Arbol::AgregarHijoI_esimo(nodo* padre, int etiqueta){
                     if(nuevoHijo->Etiqueta > nodoAux->Etiqueta && nuevoHijo->Etiqueta < nodoAux->HD->Etiqueta){
                         nuevoHijo->HD = nodoAux->HD;
                         nodoAux->HD = nuevoHijo;
-                        //nuevoHijo->HI = nodoAux;
                         Noinsertado=false;
                     }
                 }else{
                         nodoAux->HD = nuevoHijo;
-                       // nuevoHijo->HI = nodoAux;
                         Noinsertado = false;
+                        nodoAux->EsUltimo=false;
+                        nuevoHijo->EsUltimo=true;
+                        nuevoHijo->padre=padre;
                 }
                 nodoAux = nodoAux->HD;
             }
@@ -156,7 +159,15 @@ nodo* Arbol::Padre(nodo* hijo){
     if(hijo == raiz){
         return 0;
     }else{
-        return hijo->padre;
+        if(hijo->EsUltimo){
+            return hijo->padre;
+        }else{
+        nodo* nh=hijo->HD;
+        while(!nh->EsUltimo){
+               nh=nh->HD;
+        }
+        return nh->padre;
+        }
     }
 }
 

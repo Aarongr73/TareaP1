@@ -6,11 +6,13 @@ struct nodo{
         nodo* HMI; //HIJO m�s izquierdo
         nodo* HD; //hermano derecho
         nodo* padre;
+        bool EsUltimo;
         public:
             nodo(){
                 HMI = 0;
                 HD = 0;
                 padre = 0;
+                EsUltimo=0;
         }
 };
 typedef nodo NodoPrincipal;

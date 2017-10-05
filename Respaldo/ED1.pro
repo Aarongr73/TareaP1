@@ -4,9 +4,9 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    hijomasizq2.cpp \
     Cola.cpp \
+    ArbolLista.cpp
 
 HEADERS += \
-    hijomasizq2.h \
     Cola.h \
+   ArbolLista.h

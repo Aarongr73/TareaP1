@@ -45,7 +45,7 @@ Arbol(int capacidad=0,NodoPrincipal* raiz=nullptr);
     void PonerRaiz(int etiqueta);
     void Crear();
     NodoPrincipal* HMI(NodoPrincipal* nodo);
-    NodoPrincipal* AgregarHijoI_esimo(NodoPrincipal* padre,double Etiqueta);
+    NodoPrincipal* AgregarHijoI_esimo(NodoPrincipal* padre,double Etiqueta,int pos);
     NodoPrincipal* Raiz();
     void BorrarHoja(NodePrincipal *nodo);
     NodePrincipal*Buscar(double Etiqueta);
