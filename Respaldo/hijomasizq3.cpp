@@ -87,40 +87,7 @@ nodo* Arbol::Raiz(){
     return raiz;
 }
 
-nodo* Arbol::AgregarHijoI_esimo(nodo* padre, int etiqueta){
-    nodo* nuevoHijo = new nodo();
-    nuevoHijo->Etiqueta = etiqueta;
-    nuevoHijo->padre = padre;
-    ++numNodos;
-    if(padre->HMI==0){
-        padre->HMI = nuevoHijo;
-    }else{
-        if(nuevoHijo->Etiqueta < padre->HMI->Etiqueta){
-            nuevoHijo->HD = padre->HMI;
-            padre->HMI = nuevoHijo;
-            nuevoHijo->HD->HI = nuevoHijo;
-        }else{
-            nodo* nodoAux = padre->HMI;
-            bool Noinsertado = true;
-            while(nodoAux != 0 && Noinsertado){
-                if(nodoAux->HD != 0){
-                    if(nuevoHijo->Etiqueta > nodoAux->Etiqueta && nuevoHijo->Etiqueta < nodoAux->HD->Etiqueta){
-                        nuevoHijo->HD = nodoAux->HD;
-                        nodoAux->HD = nuevoHijo;
-                        nuevoHijo->HI = nodoAux;
-                        Noinsertado=false;
-                    }
-                }else{
-                        nodoAux->HD = nuevoHijo;
-                        nuevoHijo->HI = nodoAux;
-                        Noinsertado = false;
-                }
-                nodoAux = nodoAux->HD;
-            }
-        }
-    }
-    return nuevoHijo;
-}
+
 
 int Arbol::Etiqueta(nodo* Nodo){
         return Nodo->Etiqueta;
@@ -152,6 +119,43 @@ nodo* Arbol::Padre(nodo* hijo){
     }else{
         return hijo->padre;
     }
+}
+
+nodo *Arbol::AgregarHijoI_esimo(nodo *padre, int etiqueta, int pos){
+
+    nodo* nuevoHijo=new nodo();
+    nuevoHijo->padre = padre;
+    nuevoHijo->Etiqueta=etiqueta;
+    if(padre->HMI==nullptr){
+        padre->HMI=nuevoHijo;
+    }else{
+        if(pos==1){
+            nuevoHijo->HD=padre->HMI;
+            padre->HMI=nuevoHijo;
+            nuevoHijo->HI = nullptr;
+        }else if(pos==NumHijos(padre)+1){
+            nodo* Actual=padre->HMI;
+            while(Actual->HD!=nullptr){
+                Actual=Actual->HD;
+            }
+            Actual->HD=nuevoHijo;
+            nuevoHijo->HI = Actual;
+        }else{
+            int cont=1;
+            nodo* previo=nullptr;
+            nodo* Actual=padre->HMI;
+            while(cont<=pos-1){
+                previo=Actual;
+                Actual=Actual->HD;
+                ++cont;
+            }
+                nuevoHijo->HD=Actual;
+                previo->HD=nuevoHijo;
+                nuevoHijo->HI = previo;
+        }
+
+    }
+    this->numNodos++;
 }
 
 bool Arbol::Vacio(){
@@ -215,5 +219,8 @@ nodo* Arbol::PreOrdenBusqueda(nodo* actual,int etiqueta, nodo* node){
         }
         nh = HD(nh);
     }
+}
+void Arbol::MostrarEtiqueta(nodo* nodo){
+    cout<<nodo->Etiqueta;
 }
 

@@ -1,11 +1,11 @@
 #ifndef ARREGLO_PP
 #define ARREGLO_PP
-#define MAX 10
+#define MAX 100
 #include <iostream>
 using namespace std;
 
 struct Nodo{
-    char etiqueta;
+    char Etiqueta;
     int nodoPadre;
 };
 
@@ -22,20 +22,23 @@ class Arbol {
     ~Arbol();
         void Crear();
         void Vaciar();
+        void Destruir();
         bool Vacio();
-        bool Raiz(Nodo);
+        Nodo Raiz();
         Nodo HMI(Nodo);
         Nodo HD(Nodo);
         Nodo Padre(Nodo);
         bool EsHoja(Nodo);
         char Etiqueta(Nodo);
-        int NumNodos();
+        int NumElem();
         int NumHijos(Nodo);
         void ModificarEtiqueta(Nodo, char);
-        Nodo AgregarHijo(Nodo, char);
+        Nodo AgregarHijoI_esimo(Nodo, char,int);
         void BorrarHoja(Nodo);
         void PonerRaiz(char);
-        int Buscar(char n);
+        int BuscarIndice(char etiqueta);
+        Nodo Buscar(char etiqueta);
+        void MostrarEtiqueta(Nodo nodo);
 
 };
 #endif

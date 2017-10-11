@@ -75,13 +75,13 @@ void Arbol::BorrarHoja(nodo* hoja){
 
 int Arbol::NumHijos(nodo* padre){
     int hijos = 0;
-    nodo* hmi = new nodo();
-    hmi = HMI(padre);
-    if(hmi != 0){
+    nodo* HMI = new nodo();
+    HMI = this-> HMI(padre);
+    if(HMI != 0){
         ++hijos;
-        while(HD(hmi) != 0){
+        while(HD(HMI) != 0){
             ++hijos;
-            hmi = HD(hmi);
+            HMI = HD(HMI);
         }
     }
     return hijos;
@@ -97,38 +97,41 @@ nodo* Arbol::Raiz(){
     return raiz;
 }
 
-nodo* Arbol::AgregarHijoI_esimo(nodo* padre, int etiqueta){
-    nodo* nuevoHijo = new nodo();
-    nuevoHijo->Etiqueta = etiqueta;
-    ++numNodos;
-    if(padre->HMI==0){
-        padre->HMI = nuevoHijo;
+nodo *Arbol::AgregarHijoI_esimo(nodo* padre, int etiqueta, int pos){
+    nodo* nuevoHijo=new nodo();
+    nuevoHijo->Etiqueta=etiqueta;
+    if(padre->HMI==nullptr){
+        padre->HMI=nuevoHijo;
+        nuevoHijo->EsUltimo=true;
+        nuevoHijo->padre=padre;
     }else{
-        if(nuevoHijo->Etiqueta < padre->HMI->Etiqueta){
-            nuevoHijo->HD = padre->HMI;
-            padre->HMI = nuevoHijo;
-        }else{
-            nodo* nodoAux = padre->HMI;
-            bool Noinsertado = true;
-            while(nodoAux != 0 && Noinsertado){
-                if(nodoAux->HD != 0){
-                    if(nuevoHijo->Etiqueta > nodoAux->Etiqueta && nuevoHijo->Etiqueta < nodoAux->HD->Etiqueta){
-                        nuevoHijo->HD = nodoAux->HD;
-                        nodoAux->HD = nuevoHijo;
-                        Noinsertado=false;
-                    }
-                }else{
-                        nodoAux->HD = nuevoHijo;
-                        Noinsertado = false;
-                        nodoAux->EsUltimo=false;
-                        nuevoHijo->EsUltimo=true;
-                        nuevoHijo->padre=padre;
-                }
-                nodoAux = nodoAux->HD;
+        if(pos==1){
+            nuevoHijo->HD=padre->HMI;
+            padre->HMI=nuevoHijo;
+        }else if(pos==NumHijos(padre)+1){
+            nodo* Actual=padre->HMI;
+            while(Actual->HD!=nullptr){
+                Actual=Actual->HD;
             }
+            Actual->EsUltimo = false;
+            Actual->HD=nuevoHijo;
+            nuevoHijo->EsUltimo = true;
+            nuevoHijo->padre = padre;
+        }else{
+            int cont=1;
+            nodo* previo=nullptr;
+            nodo* Actual=padre->HMI;
+            while(cont<=pos-1){
+                previo=Actual;
+                Actual=Actual->HD;
+                ++cont;
+            }
+                nuevoHijo->HD=Actual;
+                previo->HD=nuevoHijo;
         }
+
     }
-    return nuevoHijo;
+    this->numNodos++;
 }
 
 int Arbol::Etiqueta(nodo* Nodo){
@@ -179,13 +182,13 @@ bool Arbol::Vacio(){
     }
 }
 
-/*void Arbol::MostrarArbolR(nodo* node){
+void Arbol::MostrarArbolR(nodo* node){
     nodo* nh = new nodo();
-    cout<<"Nodos: "<<node->etiqueta<<endl;
+    cout<<"Nodos: "<<node->Etiqueta<<endl;
     nh = node->HMI;
     while(nh != 0){
         MostrarArbolR(nh);
-        nh = HermanoDerecho(nh);
+        nh = HD(nh);
     }
 }
 
@@ -193,7 +196,7 @@ void Arbol::MostrarArbol(){
     if(!Vacio()){
         MostrarArbolR(Raiz());
     }
-}*/
+}
 
 bool Arbol::EsHoja(nodo* node){
     if(HMI(node) == 0){
@@ -233,4 +236,6 @@ nodo* Arbol::PreOrdenBusqueda(nodo* actual,int etiqueta, nodo* node){
         nh = HD(nh);
     }
 }
-
+void Arbol::MostrarEtiqueta(nodo* nodo){
+    cout<<nodo->Etiqueta;
+}

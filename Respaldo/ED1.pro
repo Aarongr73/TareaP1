@@ -5,8 +5,8 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     Cola.cpp \
-    ArbolLista.cpp
+    arreglopuntp.cpp
 
 HEADERS += \
     Cola.h \
-   ArbolLista.h
+   arreglopuntp.h

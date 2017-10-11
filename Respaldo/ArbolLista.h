@@ -29,38 +29,39 @@ struct NodePrincipal
    }
 };
 
-typedef NodePrincipal NodoPrincipal;
+typedef NodePrincipal* NodoPrincipal;
 
 
 class Arbol
 {
 public:
-NodoPrincipal* raiz;
+NodePrincipal* raiz;
 int Elementos;
 
 public:
-Arbol(int capacidad=0,NodoPrincipal* raiz=nullptr);
+Arbol(int capacidad=0, NodePrincipal *raiz=nullptr);
 ~Arbol();
 
     void PonerRaiz(int etiqueta);
     void Crear();
-    NodoPrincipal* HMI(NodoPrincipal* nodo);
-    NodoPrincipal* AgregarHijoI_esimo(NodoPrincipal* padre,double Etiqueta,int pos);
-    NodoPrincipal* Raiz();
+    NodePrincipal* HMI(NodePrincipal* nodo);
+    NodePrincipal* AgregarHijoI_esimo(NodePrincipal* padre,double Etiqueta,int pos);
+    NodePrincipal* Raiz();
     void BorrarHoja(NodePrincipal *nodo);
     NodePrincipal*Buscar(double Etiqueta);
-    void BorraListHijos(NodoPrincipal* nodo);
-    bool BorraListPrincipal(NodoPrincipal* nodoActual, NodoPrincipal* nodoPrevio, NodoPrincipal* nodo);
+    void BorraListHijos(NodePrincipal* nodo);
+    bool BorraListPrincipal(NodePrincipal* nodoActual, NodePrincipal* nodoPrevio, NodePrincipal* nodo);
     int NumElem();
-    int NumHijos(NodoPrincipal* padre);
-    NodoPrincipal* HD(NodoPrincipal* nodo);
-    NodoPrincipal* Padre(NodoPrincipal* nodo);
+    int NumHijos(NodePrincipal *padre);
+    NodePrincipal* HD(NodePrincipal *nodo);
+    NodePrincipal* Padre(NodePrincipal* nodo);
     bool Vacio();
-    bool isRaiz(NodoPrincipal* nodo);
-    double Etiqueta(NodoPrincipal* nodo);
-    void ModificarEtiqueta(NodoPrincipal* nodo,double etiqueta);
+    bool isRaiz(NodePrincipal* nodo);
+    double Etiqueta(NodePrincipal* nodo);
+    void ModificarEtiqueta(NodePrincipal* nodo,double etiqueta);
     void Destruir();
     void Vaciar();
+    void MostrarEtiqueta(NodePrincipal* nodo);
 
 };
 

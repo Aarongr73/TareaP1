@@ -1,10 +1,10 @@
 #include <iostream>
-#include "ArbolLista.h"
-//#include "hijomasizquierdo.h"
-//#include "hijomasizq2.h"
-//#include "hijomasizq3.h"
-#include "Cola.h"
 //#include "ArbolLista.h"
+//#include "hijomasizquierdo.h"
+//#include "hijomasizq3.h"
+//#include "hijomasizq2.h"
+#include "Cola.h"
+#include "arreglopuntp.h"
 using namespace std;
 
 void DesplegarMenuArbol(){
@@ -14,18 +14,17 @@ void DesplegarMenuArbol(){
 
 do{
         cout<<"Seleccione una opcion\n"
-              "(1)Raiz\n"
-              "(2)Poner Raiz\n"
-              "(3)AgregarHijo\n"
-              "(4)Borrar Hoja\n"
-              "(5)Hijo Mas Izquierdo\n"
-              "(6)Hermano Derecho\n"
-              "(7)Vacio?\n"
-              "(8)Vaciar\n"
-              "(9)Padre\n"
-              "(10)Modificar Etitqueta\n"
-              "(11)Numero de elementos en el arbol\n"
-              "(12) Numeros de hijos de un nodo\n"
+              "(1)Poner Raiz\n"
+              "(2)AgregarHijo\n"
+              "(3)Borrar Hoja\n"
+              "(4)Hijo Mas Izquierdo\n"
+              "(5)Hermano Derecho\n"
+              "(6)Vacio?\n"
+              "(7)Vaciar\n"
+              "(8)Padre\n"
+              "(9)Modificar Etitqueta\n"
+              "(10)Numero de elementos en el arbol\n"
+              "(11) Numeros de hijos de un nodo\n"
               "(0)Salir\n";
     cin>>seleccion;
     switch(seleccion){
@@ -33,17 +32,13 @@ do{
             arbol.Destruir();
          break;
         case 1:
-            NodoPrincipal* agregado;
-            agregado=arbol.Raiz();
-            cout<<agregado->Etiqueta;
+            int raiz;
+            cout<<"introduzca un valor para la raiz";
+            cin>>raiz;
+            arbol.PonerRaiz(raiz);
+            cout<<"Agregada la raiz!\n";
         break;
         case 2:
-            cout<<"introduzca la nueva etiqueta\n";
-            int etiqueta;
-            cin>>etiqueta;
-            arbol.PonerRaiz(etiqueta);
-        break;
-        case 3:
             int etiquetaPadre;
             int etiquetaHijo;
             int pos;
@@ -51,30 +46,34 @@ do{
             cin>>etiquetaPadre;
             cout<<"Introduzca la etiqueta del hijo\n";
             cin>>etiquetaHijo;
+            cout<<"seleccione donde\n";
+            cin>>pos;
             arbol.AgregarHijoI_esimo(arbol.Buscar(etiquetaPadre),etiquetaHijo,pos);
             break;
-        case 4:
+        case 3:
             int nodoABorrar;
             cout<<"Intrduzca la etiqueta de la hoja a borra\n";
             cin>>nodoABorrar;
             arbol.BorrarHoja(arbol.Buscar(nodoABorrar));
         break;
-        case 5:
-           int Padre;
-           NodoPrincipal* hmi;
-           cout<<"Introduzca la etiqueta del nodo padre\n";
-           cin>>Padre;
-           hmi=arbol.HMI(arbol.Buscar(Padre));
-           cout<<"Hijo mas izquierdo es: "<<hmi->Etiqueta<<"\n";
+        case 4:
+           int nodo;
+           NodoPrincipal hmi;
+           cout<<"Introduzca la etiqueta del nodo \n";
+           cin>>nodo;
+           hmi=arbol.HMI(arbol.Buscar(nodo));
+           cout<<"Hijo mas izquierdo es: ";
+           arbol.MostrarEtiqueta(hmi);
+           cout<<"\n";
         break;
-        case 6:
-            NodoPrincipal* hder;
+        case 5:
+            NodoPrincipal hder;
             int hizq;
             cout<<"Introduzca la etiqueta del nodo\n";
             cin>>hizq;
             hder=arbol.HD(arbol.Buscar(hizq));
         break;
-        case 7:
+        case 6:
             bool vacio;
             vacio=arbol.Vacio();
             if(!vacio)
@@ -82,19 +81,21 @@ do{
             else
                 cout<<"Vacio!!\n";
         break;
-        case 8:
+        case 7:
             arbol.Vaciar();
             cout<<"Arbol vaciado!!\n";
         break;
-        case 9:
-            NodoPrincipal* padre;
+        case 8:
+            NodoPrincipal padre;
             int nodoHijo;
             cout<<"Introduzca la etiqueta del nodo hijo\n";
             cin>>nodoHijo;
             padre=arbol.Padre(arbol.Buscar(nodoHijo));
-            cout<<"El padre de "<< nodoHijo+" es: "<<padre->Etiqueta+"\n";
+            cout<<"El padre de "<< nodoHijo+" es: ";
+            arbol.MostrarEtiqueta(padre);
+            cout<<"\n";
         break;
-        case 10:
+        case 9:
             int nuevaEtiqueta;
             int nodoActual;
             cout<<"Introduzaca la etiqueta del nodo a modificar\n";
@@ -103,18 +104,19 @@ do{
             cin>> nuevaEtiqueta;
             arbol.ModificarEtiqueta(arbol.Buscar(nodoActual),nuevaEtiqueta);
         break;
-        case 11:
+        case 10:
             int numelem;
             numelem=arbol.NumElem();
             cout<<"La cantidad de elementos es de: "<<numelem<<"\n";
         break;
-        case 12:
+        case 11:
             int numhijos;
             int elpadre;
             cout<<"Introduzca la etiquta del nodo padre\n";
             cin>>elpadre;
             numhijos=arbol.NumHijos(arbol.Buscar(elpadre));
-            cout<<padre->Etiqueta+"tiene"<<numhijos<<"hijos\n";
+            arbol.MostrarEtiqueta(padre);
+            cout<<" tiene"<<numhijos<<"hijos\n";
         break;
 
         default:
@@ -203,21 +205,10 @@ int main()
       cola.Crear();
       cola.Encolar(8);
       cola.Desencolar();*/
-   //   menu();
-    Arbol arbol;
-    arbol.Crear();
-    arbol.PonerRaiz(8);
-    arbol.AgregarHijoI_esimo(arbol.Buscar(8), 6,1);
-    arbol.AgregarHijoI_esimo(arbol.Buscar(8), 2,2);
-    arbol.AgregarHijoI_esimo(arbol.Buscar(8), 3,3);
-    arbol.AgregarHijoI_esimo(arbol.Buscar(8), 10,3);
+      menu();
 
-     arbol.AgregarHijoI_esimo(arbol.Buscar(3), 4,1);
-      arbol.AgregarHijoI_esimo(arbol.Buscar(3), 5,2);
-       arbol.AgregarHijoI_esimo(arbol.Buscar(3), 9,3);
-       arbol.BorrarHoja(arbol.Buscar(4));
-       arbol.BorrarHoja(arbol.Buscar(9));
-       arbol.BorrarHoja(arbol.Buscar(5));
+
+
 
 
 

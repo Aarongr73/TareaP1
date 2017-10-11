@@ -15,7 +15,7 @@ struct nodo{
                 EsUltimo=0;
         }
 };
-typedef nodo NodoPrincipal;
+typedef nodo* NodoPrincipal;
 
 class Arbol{
 private:
@@ -34,7 +34,7 @@ public:
     bool Vacio();
     bool esRaiz(nodo*);
     void PonerRaiz(int);
-    nodo* AgregarHijoI_esimo(nodo*, int);
+    nodo* AgregarHijoI_esimo(nodo*, int,int);
     void BorrarHoja(nodo*);
     void ModificarEtiqueta(nodo*, int);
     nodo* Raiz();
@@ -46,6 +46,7 @@ public:
     int NumHijos(nodo*);
     void MostrarArbol();
     nodo* Buscar(int);
+    void MostrarEtiqueta(nodo* nodo);
 };
 #endif // ARBOL_17
 

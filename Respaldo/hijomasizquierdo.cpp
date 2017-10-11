@@ -181,7 +181,7 @@ int Arbol::NumElem(){
 void Arbol::ModificarEtiqueta(Node* nodo,int etiqueta){
     nodo->Etiqueta=etiqueta;
 }
-NodoPrincipal* Arbol::Raiz(){
+NodePrincipal *Arbol::Raiz(){
     return raiz;
 }
 
