@@ -1,6 +1,8 @@
 #include "hijomasizquierdo.h"
+#include <iostream>
+using namespace std;
 
-Arbol::Arbol(Node *raiz, int elementos)
+Arbol::Arbol(Node* raiz, int elementos)
     :raiz(raiz)
     ,Elementos(elementos)
 {
@@ -43,12 +45,12 @@ Node *Arbol::HD(Node* nodo){
 }
 
 void Arbol::PonerRaiz(int etiqueta){
-    this->raiz=new NodoPrincipal();
+    this->raiz=new Node();
     raiz->Etiqueta=etiqueta;
     this->Elementos++;
 }
 Node *Arbol::AgregarHijoI_esimo(Node *padre, int etiqueta, int pos){
-    NodoPrincipal* nuevoHijo=new NodoPrincipal();
+    Node* nuevoHijo=new Node();
     nuevoHijo->Etiqueta=etiqueta;
     if(padre->Hmi==nullptr){
         padre->Hmi=nuevoHijo;
@@ -57,15 +59,15 @@ Node *Arbol::AgregarHijoI_esimo(Node *padre, int etiqueta, int pos){
             nuevoHijo->HD=padre->Hmi;
             padre->Hmi=nuevoHijo;
         }else if(pos==NumHijos(padre)+1){
-            NodoPrincipal* Actual=padre->Hmi;
+            Node* Actual=padre->Hmi;
             while(Actual->HD!=nullptr){
                 Actual=Actual->HD;
             }
             Actual->HD=nuevoHijo;
         }else{
             int cont=1;
-            NodoPrincipal* previo=nullptr;
-            NodoPrincipal* Actual=padre->Hmi;
+            Node* previo=nullptr;
+            Node* Actual=padre->Hmi;
             while(cont<=pos-1){
                 previo=Actual;
                 Actual=Actual->HD;
@@ -99,12 +101,12 @@ Node* Arbol::PreOrdenBusqueda(Node* Actual, int etiqueta, Node *nodo){
     }
 }
 Node* Arbol::Padre(Node *nodo){
-    NodoPrincipal* padre=nullptr;
+    Node* padre=nullptr;
     if(!this->Vacio())
         padre=PreOrdenPadre(this->raiz,nodo);
     return padre;
 }
-NodoPrincipal* Arbol::PreOrdenPadre(NodoPrincipal* Actual,Node* buscado){
+Node* Arbol::PreOrdenPadre(Node* Actual,Node* buscado){
 
     Node* nh=Actual->Hmi;
     while(nh!=nullptr ){
@@ -119,24 +121,24 @@ NodoPrincipal* Arbol::PreOrdenPadre(NodoPrincipal* Actual,Node* buscado){
     }
 }
 void Arbol::BorrarHoja(Node *nodo){
-    NodoPrincipal* padre=Padre(nodo);
+    Node* padre=Padre(nodo);
     if(isRaiz(nodo)){
-        NodoPrincipal* nodoAux;
+        Node* nodoAux;
         this->raiz=nullptr;
         delete nodoAux;
     }else{
     if(padre->Hmi==nodo){
-        NodoPrincipal* nodoAux=padre->Hmi;
+        Node* nodoAux=padre->Hmi;
         padre->Hmi=nodoAux->HD;
         nodoAux->HD=nullptr;
         delete nodoAux;
     }else{
         bool NoEliminado=true;
-        NodoPrincipal* Actual=padre->Hmi->HD;
-        NodoPrincipal* Previo=padre->Hmi;
+        Node* Actual=padre->Hmi->HD;
+        Node* Previo=padre->Hmi;
         while (Actual!=nullptr && NoEliminado) {
             if(Actual==nodo){
-                NodoPrincipal* nodoAux;
+                Node* nodoAux;
                 nodoAux=Actual;
                 if(Actual->HD!=nullptr){
                     Previo->HD=Actual->HD;
@@ -153,7 +155,7 @@ void Arbol::BorrarHoja(Node *nodo){
     }
     this->Elementos--;
 }
-bool Arbol::isRaiz(NodoPrincipal* nodo){
+bool Arbol::isRaiz(Node* nodo){
     if(nodo==this->raiz){
         return true;
     }
@@ -181,8 +183,11 @@ int Arbol::NumElem(){
 void Arbol::ModificarEtiqueta(Node* nodo,int etiqueta){
     nodo->Etiqueta=etiqueta;
 }
-NodePrincipal *Arbol::Raiz(){
+Node *Arbol::Raiz(){
     return raiz;
+}
+void Arbol::MostrarEtiqueta(Node* nodo){
+    cout<<nodo->Etiqueta;
 }
 
 

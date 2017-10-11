@@ -14,19 +14,19 @@ public:
     {
     }
 };
-typedef Node NodoPrincipal;
+typedef Node* NodoPrincipal;
 
 class Arbol
 {
 public:
-    NodoPrincipal* raiz;
+    Node* raiz;
     int Elementos;
 
 public:
     Arbol(Node* raiz=nullptr,int elementos=0);
     ~Arbol();
     void Destruir();
-    NodoPrincipal* Raiz();
+    Node* Raiz();
     void DestruirR(Node* nodo);
     void PonerRaiz(int etiqueta);
     Node* AgregarHijoI_esimo(Node* padre,int etiqueta,int pos);
@@ -44,7 +44,8 @@ public:
     void Vaciar();
     int NumHijos(Node* nodo);
     int NumElem();
-    void ModificarEtiqueta(NodoPrincipal* nodo,int etiqueta);
+    void ModificarEtiqueta(Node* nodo,int etiqueta);
+    void MostrarEtiqueta(Node* nodo);
 
 };
 
