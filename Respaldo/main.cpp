@@ -1,10 +1,10 @@
 #include <iostream>
-//#include "ArbolLista.h"
+#include "ArbolLista.h"
 //#include "hijomasizquierdo.h"
 //#include "hijomasizq3.h"
 //#include "hijomasizq2.h"
 #include "Cola.h"
-#include "arreglopuntp.h"
+//#include "arreglopuntp.h"
 using namespace std;
 
 void DesplegarMenuArbol(){
@@ -205,7 +205,10 @@ int main()
       cola.Crear();
       cola.Encolar(8);
       cola.Desencolar();*/
-      menu();
+      Arbol arbol;
+      arbol.Crear();
+      arbol.PonerRaiz(1);
+      arbol.HMI(arbol.Buscar(1));
 
 
 

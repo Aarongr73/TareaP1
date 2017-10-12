@@ -28,7 +28,6 @@ struct NodePrincipal
    {
    }
 };
-
 typedef NodePrincipal* NodoPrincipal;
 
 
