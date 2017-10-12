@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+NodoPrincipal NodoNulo=0;
+
 Arbol::Arbol(int capacidad,NodePrincipal* raiz)
 :Elementos(capacidad)
 ,raiz(raiz)

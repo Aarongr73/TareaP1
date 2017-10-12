@@ -1,5 +1,6 @@
 #include "arreglopuntp.h"
 
+int NodoNulo=-1;
 Arbol::Arbol(){
     PonerRaiz(' ');
     Arreglo[0].nodoPadre = 0;
@@ -26,35 +27,41 @@ bool Arbol::Vacio(){
     return 0;
 }
 
-Nodo Arbol::Raiz(){
+int Arbol::Raiz(){
     Arreglo[0].nodoPadre=10000000000;
-    return Arreglo[0];
+    return 0;
 }
 
-Nodo Arbol::HMI(Nodo n){
-    int pos = BuscarIndice(n.Etiqueta);
+int Arbol::HMI(int n){
+    int pos = n;
     int i = pos+1;
     while(Arreglo[i].nodoPadre!=pos){
         ++i;
+        if(i>NumElem()){
+            return NodoNulo;
+        }
     }
-    return Arreglo[i];
+    return i;
 }
 
-Nodo Arbol::HD(Nodo n){
-    int pos = BuscarIndice(n.Etiqueta);
+int Arbol::HD(int n){
+    int pos = n;
     int i=pos+1;
-    while(Arreglo[i].nodoPadre!=n.nodoPadre){
+    while(Arreglo[i].nodoPadre!=Arreglo[n].nodoPadre){
         i++;
+        if(i>NumElem()){
+            return NodoNulo;
+        }
     }
-    return Arreglo[i];
+    return i;
 }
 
-Nodo Arbol::Padre(Nodo n){
-    return Arreglo[n.nodoPadre];
+int Arbol::Padre(int n){
+    return Arreglo[n].nodoPadre;
 }
 
-bool Arbol::EsHoja(Nodo n){
-    int pos = BuscarIndice(n.Etiqueta);
+bool Arbol::EsHoja(int n){
+    int pos = n;
     int i = pos;
     while(Arreglo[i].nodoPadre != pos && pos <= NumElem()) {
         ++i;
@@ -66,17 +73,17 @@ bool Arbol::EsHoja(Nodo n){
     }
 }
 
-char Arbol::Etiqueta(Nodo n) {
-    return n.Etiqueta;
+char Arbol::Etiqueta(int n) {
+    return Arreglo[n].Etiqueta;
 }
 
 int Arbol::NumElem() {
     return numNodos;
 }
 
-int Arbol::NumHijos(Nodo n){
+int Arbol::NumHijos(int n){
     int numh = 0;
-    int pos2=BuscarIndice(n.Etiqueta);
+    int pos2=n;
     int i=pos2+1;
     int hijos=0;
     while(Arreglo[i].nodoPadre==pos2){
@@ -87,24 +94,26 @@ int Arbol::NumHijos(Nodo n){
     return hijos;
 }
 
-void Arbol::ModificarEtiqueta(Nodo n, char e){
-    n.Etiqueta = e;
+void Arbol::ModificarEtiqueta(int n, char e){
+    Arreglo[n].Etiqueta = e;
 }
 
-Nodo Arbol::AgregarHijoI_esimo(Nodo n, char e, int p){
-    int pos = BuscarIndice(n.Etiqueta);
+int Arbol::AgregarHijoI_esimo(int n, char e, int p){
+    int pos =n;
     int i = pos;
     int numhij=NumHijos(n);
     int contador = 0;
     int j = NumElem();
+    int posF=0;
 
     Nodo nuevo;
     nuevo.nodoPadre = pos;
     nuevo.Etiqueta = e;
     if(NumHijos(n)==0 || p==numhij+1){
         Arreglo[j]=nuevo;
+        posF=j;
     }else{
-        int hijo=BuscarIndice(HMI(n).Etiqueta);
+        int hijo=HMI(n);
         int mismoPadre=1;
         while(mismoPadre<p){
             if(Arreglo[hijo].nodoPadre==pos){
@@ -118,20 +127,23 @@ Nodo Arbol::AgregarHijoI_esimo(Nodo n, char e, int p){
             --cont;
         }
         Arreglo[hijo]=nuevo;
+        posF=hijo;
 
     }
 
+
 ++numNodos;
-return nuevo;
+return posF;
 
 }
 
-void Arbol::BorrarHoja(Nodo n){
-    int pos = BuscarIndice(n.Etiqueta);
+void Arbol::BorrarHoja(int n){
+    int pos =n;
     int i = pos;
     while (i <= NumElem()) {
         Arreglo[i] = Arreglo[i+1];
         ++i;
+        Arreglo[i+1].nodoPadre=Arreglo[i+1].nodoPadre-1;
     }
      --numNodos;
 }
@@ -147,14 +159,14 @@ int Arbol::BuscarIndice(char e) {
     }
     return i;
 }
-Nodo Arbol::Buscar(char e){
+int Arbol::Buscar(char e){
     int i = BuscarIndice(e);
-    return Arreglo[i];
+    return i;
 }
 
 void Arbol::Destruir(){
 
 }
-void Arbol::MostrarEtiqueta(Nodo nodo){
-    cout<<nodo.Etiqueta;
+void Arbol::MostrarEtiqueta(int nodo){
+    cout<<Arreglo[nodo].Etiqueta;
 }

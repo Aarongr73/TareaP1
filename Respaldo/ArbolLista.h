@@ -29,6 +29,7 @@ struct NodePrincipal
    }
 };
 typedef NodePrincipal* NodoPrincipal;
+extern  NodoPrincipal NodoNulo;
 
 
 class Arbol

@@ -9,8 +9,8 @@ struct Nodo{
     int nodoPadre;
 };
 
-typedef Nodo NodoPrincipal;
-
+typedef int NodoPrincipal;
+extern int NodoNulo;
 class Arbol {
 
     private:
@@ -24,21 +24,21 @@ class Arbol {
         void Vaciar();
         void Destruir();
         bool Vacio();
-        Nodo Raiz();
-        Nodo HMI(Nodo);
-        Nodo HD(Nodo);
-        Nodo Padre(Nodo);
-        bool EsHoja(Nodo);
-        char Etiqueta(Nodo);
+        int Raiz();
+        int HMI(int);
+        int HD(int);
+        int Padre(int);
+        bool EsHoja(int);
+        char Etiqueta(int);
         int NumElem();
-        int NumHijos(Nodo);
-        void ModificarEtiqueta(Nodo, char);
-        Nodo AgregarHijoI_esimo(Nodo, char,int);
-        void BorrarHoja(Nodo);
+        int NumHijos(int);
+        void ModificarEtiqueta(int, char);
+        int AgregarHijoI_esimo(int, char,int);
+        void BorrarHoja(int);
         void PonerRaiz(char);
         int BuscarIndice(char etiqueta);
-        Nodo Buscar(char etiqueta);
-        void MostrarEtiqueta(Nodo nodo);
+        int Buscar(char etiqueta);
+        void MostrarEtiqueta(int nodo);
 
 };
 #endif
