@@ -44,7 +44,7 @@ void Arbol::PonerRaiz(int etiqueta){
 }
 NodePrincipal* Arbol::HMI(NodePrincipal* nodo){
     if(nodo->PrimerHijo == 0){
-        return 0;
+        return NodoNulo;
     }else{
         return nodo->PrimerHijo->listaPrincipal;
     }

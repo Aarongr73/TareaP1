@@ -2,9 +2,9 @@
 //#include "ArbolLista.h"
 //#include "hijomasizquierdo.h"
 //#include "hijomasizq3.h"
-//#include "hijomasizq2.h"
+#include "hijomasizq3.h"
 #include "Cola.h"
-#include "arreglopuntp.h"
+//#include "arreglopuntp.h"
 using namespace std;
 
 void DesplegarMenuArbol(){
@@ -230,12 +230,12 @@ int main()
       Arbol arbol;
       arbol.Crear();
       arbol.PonerRaiz(1);
-      arbol.AgregarHijoI_esimo(arbol.Buscar(1),'a',1);
-      arbol.AgregarHijoI_esimo(arbol.Buscar(1),'b',1);
-      arbol.AgregarHijoI_esimo(arbol.Buscar('a'),'c',1);
-      arbol.AgregarHijoI_esimo(arbol.Buscar('a'),'d',1);
-      arbol.BorrarHoja(arbol.Buscar('b'));
-      arbol.MostrarEtiqueta(arbol.HMI(arbol.Buscar('d')));
+      arbol.AgregarHijoI_esimo(arbol.Buscar(1),2,1);
+      arbol.AgregarHijoI_esimo(arbol.Buscar(1),3,1);
+      arbol.AgregarHijoI_esimo(arbol.Buscar(2),5,1);
+      arbol.AgregarHijoI_esimo(arbol.Buscar(2),6,1);
+      arbol.BorrarHoja(arbol.Buscar(3));
+      cout<<arbol.HD(arbol.Buscar(5));
 
 
 

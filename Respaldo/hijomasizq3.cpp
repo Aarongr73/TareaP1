@@ -1,6 +1,7 @@
 #include"hijomasizq3.h"
 #include<iostream>
 using namespace std;
+NodoPrincipal NodoNulo=0;
 
 Arbol::Arbol(){
     numNodos = 0;

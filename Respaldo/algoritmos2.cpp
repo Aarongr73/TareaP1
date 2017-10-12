@@ -1,9 +1,9 @@
 #include "algoritmos2.h"
 
 #include<iostream>
-#include "arreglopuntp.h"
+//#include "arreglopuntp.h"
 //#include"hijomasizq3.h"
-//#include"hijomasizq2.h"
+#include"hijomasizq3.h"
 //#include"hijomasizquierdo.h"
 //#include"ArbolLista.h"
 using namespace std;
