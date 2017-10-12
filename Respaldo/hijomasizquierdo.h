@@ -7,7 +7,7 @@ struct Node{
     int Etiqueta;
 
 public:
-    Node(Node* HIzq=nullptr,Node* HDer=nullptr,int etique=0)
+    Node(Node* HIzq=0,Node* HDer=0,int etique=0)
         :Hmi(HIzq)
         ,HD(HDer)
         ,Etiqueta(etique)
@@ -23,7 +23,7 @@ public:
     int Elementos;
 
 public:
-    Arbol(Node* raiz=nullptr,int elementos=0);
+    Arbol(Node* raiz=0,int elementos=0);
     ~Arbol();
     void Destruir();
     Node* Raiz();
@@ -38,6 +38,7 @@ public:
     Node* HMI(Node* nodo);
     Node* HD(Node *nodo);
     bool Vacio();
+    bool EsHoja(Node*);
     void BorrarHoja(Node* nodo);
     bool isRaiz(Node* nodo);
     int Etiqueta(Node* nodo);

@@ -15,9 +15,9 @@ Arbol::~Arbol(){
 void Arbol::Destruir(){
     NodePrincipal* ActualPrincipal=this->Raiz();
 
-    while(ActualPrincipal!=nullptr){
+    while(ActualPrincipal!=0){
         NodeHijos* HijoActual=ActualPrincipal->PrimerHijo;
-        while(HijoActual!=nullptr){
+        while(HijoActual!=0){
             NodeHijos* nodoAux=HijoActual;
                 HijoActual=HijoActual->next;
                 delete nodoAux;
@@ -41,19 +41,23 @@ void Arbol::PonerRaiz(int etiqueta){
     this->Elementos++;
 }
 NodePrincipal* Arbol::HMI(NodePrincipal* nodo){
-    return nodo->PrimerHijo->listaPrincipal;
+    if(nodo->PrimerHijo == 0){
+        return 0;
+    }else{
+        return nodo->PrimerHijo->listaPrincipal;
+    }
 }
 NodePrincipal* Arbol::AgregarHijoI_esimo(NodePrincipal* padre,double Etiqueta,int pos){
      NodePrincipal* nuevo=new NodePrincipal(Etiqueta);
      NodeHijos* nuevoHijo=new NodeHijos();
 
-     if(this->Raiz()->siguiente==nullptr){
+     if(this->Raiz()->siguiente==0){
          this->Raiz()->siguiente=nuevo;
      }else{
         nuevo->siguiente=this->Raiz()->siguiente;
         this->Raiz()->siguiente=nuevo;
      }
-     if(padre->PrimerHijo==nullptr ){
+     if(padre->PrimerHijo==0 ){
          padre->PrimerHijo=nuevoHijo;
          nuevoHijo->listaPrincipal=nuevo;
      }else{
@@ -64,13 +68,13 @@ NodePrincipal* Arbol::AgregarHijoI_esimo(NodePrincipal* padre,double Etiqueta,in
 
          }else if(pos==NumHijos(padre)+1){
              NodeHijos* Actual=padre->PrimerHijo;
-             while(Actual->next!=nullptr){
+             while(Actual->next!=0){
                  Actual=Actual->next;
              }
              Actual->next=nuevoHijo;
          }else{
              int cont=1;
-             NodeHijos* previo=nullptr;
+             NodeHijos* previo=0;
              NodeHijos* Actual=padre->PrimerHijo;
              while(cont<=pos-1){
                  previo=Actual;
@@ -90,13 +94,13 @@ NodePrincipal* Arbol::Raiz(){
 }
 void Arbol::BorrarHoja(NodePrincipal* nodo){
     NodePrincipal* nodoActual=this->Raiz();
-    NodePrincipal* nodoPrevio=nullptr;
+    NodePrincipal* nodoPrevio=0;
     NodeHijos* Actual;
     NodeHijos* Previo;
     bool NoEliminadoLista=true;
     bool NoEliminadoSublista=true;
 
-    while(nodoActual!=nullptr && (NoEliminadoLista || NoEliminadoSublista)){
+    while(nodoActual!=0 && (NoEliminadoLista || NoEliminadoSublista)){
         if(NoEliminadoLista){
              NoEliminadoLista=this->BorraListPrincipal(nodoActual,nodoPrevio,nodo);
              if(!NoEliminadoLista){
@@ -105,29 +109,29 @@ void Arbol::BorrarHoja(NodePrincipal* nodo){
         }
      if((NoEliminadoLista || NoEliminadoSublista)){
         Actual=nodoActual->PrimerHijo;
-        Previo=nullptr;
-        while (Actual!=nullptr && NoEliminadoSublista) {
+        Previo=0;
+        while (Actual!=0 && NoEliminadoSublista) {
             NodeHijos* nodoAux=Actual;
             if(nodo->Etiqueta==Actual->listaPrincipal->Etiqueta){
                 if(nodo->Etiqueta==nodoActual->PrimerHijo->listaPrincipal->Etiqueta){
                     nodoActual->PrimerHijo=Actual->next;
-                }else if(Actual->next==nullptr){
-                    Previo->next=nullptr;
+                }else if(Actual->next==0){
+                    Previo->next=0;
                 }else{
                     Previo->next=Actual->next;
-                    Actual->next=nullptr;
+                    Actual->next=0;
                 }
                 if(!NoEliminadoLista){
                     delete nodoAux->listaPrincipal;
                 }
-                nodoAux->listaPrincipal=nullptr;
+                nodoAux->listaPrincipal=0;
                 delete nodoAux;
                 NoEliminadoSublista=false;
             }
             Previo=Actual;
             Actual=Actual->next;
         }
-        if(nodoActual!=nullptr){
+        if(nodoActual!=0){
             nodoPrevio=nodoActual;
             nodoActual=nodoActual->siguiente;
         }
@@ -138,13 +142,13 @@ void Arbol::BorrarHoja(NodePrincipal* nodo){
 NodePrincipal* Arbol::Buscar(double Etiqueta){
    NodePrincipal* nodoAux=this->Raiz();
    bool salir=true;
-   while(nodoAux!=nullptr && salir){
+   while(nodoAux!=0 && salir){
        if(nodoAux->Etiqueta==Etiqueta){
            return nodoAux;
        }
        else{
-           if(nodoAux->siguiente==nullptr)
-               return nullptr;
+           if(nodoAux->siguiente==0)
+               return 0;
             nodoAux=nodoAux->siguiente;
        }
 
@@ -155,11 +159,11 @@ bool Arbol::BorraListPrincipal(NodePrincipal* nodoActual,NodePrincipal* nodoPrev
        NodePrincipal* nodoAux=nodoActual;
         if(nodo==this->Raiz()->siguiente){
             this->Raiz()->siguiente=nodoActual->siguiente;
-        }else if(nodoActual->siguiente==nullptr){
-            nodoPrevio->siguiente=nullptr;
+        }else if(nodoActual->siguiente==0){
+            nodoPrevio->siguiente=0;
         }else{
             nodoPrevio->siguiente=nodoActual->siguiente;
-            nodoActual->siguiente=nullptr;
+            nodoActual->siguiente=0;
         }
         return false;
     }
@@ -172,7 +176,7 @@ int Arbol::NumElem(){
 int Arbol::NumHijos(NodePrincipal* padre){
     NodeHijos* nodoAux=padre->PrimerHijo;
     int count=0;
-    while(nodoAux!=nullptr){
+    while(nodoAux!=0){
         ++count;
         nodoAux=nodoAux->next;
     }
@@ -181,30 +185,35 @@ int Arbol::NumHijos(NodePrincipal* padre){
 NodePrincipal* Arbol::HD(NodePrincipal* nodo){
     NodePrincipal* iterador=this->Raiz();
     bool encontrado=true;
-   NodePrincipal* hermanoDerecho=nullptr;
+    NodePrincipal* hermanoDerecho = 0;
 
-    while(iterador!=nullptr && encontrado){
+    while(iterador!=0 && encontrado){
         NodeHijos* hijos=iterador->PrimerHijo;
-        while(hijos!=nullptr && encontrado){
-            if(nodo->Etiqueta==hijos->listaPrincipal->Etiqueta){
-                hermanoDerecho=hijos->next->listaPrincipal;
-                encontrado=false;
+        while(hijos!=0 && encontrado){
+            if(hijos->next != 0){
+                if(nodo->Etiqueta == hijos->listaPrincipal->Etiqueta){
+                    hermanoDerecho=hijos->next->listaPrincipal;
+                    encontrado=false;
+                }else{
+                    hijos=hijos->next;
+                }
             }else{
-                hijos=hijos->next;
+                encontrado = false;
             }
         }
         iterador=iterador->siguiente;
     }
     return hermanoDerecho;
 }
+
 NodePrincipal* Arbol::Padre(NodePrincipal* nodo){
     NodePrincipal* iterador=this->Raiz();
     NodePrincipal* padre;
     bool encontrado=true;
 
-    while(iterador!=nullptr && encontrado){
+    while(iterador!=0 && encontrado){
         NodeHijos* hijos=iterador->PrimerHijo;
-        while(hijos!=nullptr && encontrado){
+        while(hijos!=0 && encontrado){
             if(nodo->Etiqueta==hijos->listaPrincipal->Etiqueta){
                 padre=iterador;
                 encontrado=false;
@@ -240,7 +249,13 @@ void Arbol::MostrarEtiqueta(NodePrincipal *nodo){
     cout<<nodo->Etiqueta;
 }
 
-
+bool Arbol::EsHoja(NodePrincipal* nodo){
+    if(HMI(nodo) == 0){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
 

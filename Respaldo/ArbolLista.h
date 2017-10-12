@@ -8,7 +8,7 @@ struct NodeHijos
    NodePrincipal* listaPrincipal;
 
   public:
-    NodeHijos(NodeHijos* nextHijo = nullptr,NodePrincipal* yo=nullptr)
+    NodeHijos(NodeHijos* nextHijo = 0,NodePrincipal* yo=0)
       : next(nextHijo)
       ,listaPrincipal(yo)
    {
@@ -21,7 +21,7 @@ struct NodePrincipal
    NodePrincipal* siguiente;
 
   public:
-   NodePrincipal( double data=0,NodeHijos* nextHijo = nullptr,NodePrincipal* sig=nullptr)
+   NodePrincipal( double data=0,NodeHijos* nextHijo = 0,NodePrincipal* sig=0)
       : Etiqueta(data)
       , PrimerHijo(nextHijo)
       ,siguiente(sig)
@@ -35,13 +35,12 @@ typedef NodePrincipal* NodoPrincipal;
 class Arbol
 {
 public:
-NodePrincipal* raiz;
-int Elementos;
+    NodePrincipal* raiz;
+    int Elementos;
 
 public:
-Arbol(int capacidad=0, NodePrincipal *raiz=nullptr);
-~Arbol();
-
+    Arbol(int capacidad=0, NodePrincipal *raiz=0);
+    ~Arbol();
     void PonerRaiz(int etiqueta);
     void Crear();
     NodePrincipal* HMI(NodePrincipal* nodo);
@@ -56,6 +55,7 @@ Arbol(int capacidad=0, NodePrincipal *raiz=nullptr);
     NodePrincipal* HD(NodePrincipal *nodo);
     NodePrincipal* Padre(NodePrincipal* nodo);
     bool Vacio();
+    bool EsHoja(NodePrincipal*);
     bool isRaiz(NodePrincipal* nodo);
     double Etiqueta(NodePrincipal* nodo);
     void ModificarEtiqueta(NodePrincipal* nodo,double etiqueta);
