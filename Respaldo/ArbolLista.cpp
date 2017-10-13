@@ -22,11 +22,11 @@ void Arbol::Destruir(){
         while(HijoActual!=0){
             NodeHijos* nodoAux=HijoActual;
                 HijoActual=HijoActual->next;
-                delete nodoAux;
+
         }
         NodePrincipal* nodoAux=ActualPrincipal;
         ActualPrincipal=ActualPrincipal->siguiente;
-        delete nodoAux;
+
     }
 }
 void Arbol::Vaciar(){
@@ -200,6 +200,9 @@ NodePrincipal* Arbol::HD(NodePrincipal* nodo){
                     hijos=hijos->next;
                 }
             }else{
+                if(nodo->Etiqueta == hijos->listaPrincipal->Etiqueta){
+                    return NodoNulo;
+                }
                 encontrado = false;
             }
         }

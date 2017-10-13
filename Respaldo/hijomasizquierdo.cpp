@@ -5,6 +5,7 @@
 #include "hijomasizquierdo.h"
 #include <iostream>
 using namespace std;
+NodoPrincipal NodoNulo=0;
 
 Arbol::Arbol(Node* raiz, int elementos)
     :raiz(raiz)

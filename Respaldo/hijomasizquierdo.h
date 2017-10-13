@@ -15,6 +15,7 @@ public:
     }
 };
 typedef Node* NodoPrincipal;
+extern NodoPrincipal NodoNulo;
 
 class Arbol
 {

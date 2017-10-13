@@ -26,7 +26,6 @@ void Arbol::Destruir(){
 void Arbol::DestruirR(nodo* borrando){
     nodo* nh;
     nh = HMI(borrando);
-    delete borrando;
     while(nh != 0){
         DestruirR(nh);
         nh = HD(nh);
@@ -145,7 +144,7 @@ void Arbol::ModificarEtiqueta(nodo* Nodo, int etiquetaN){
 
 nodo* Arbol::HMI(nodo* padre){
     if(padre->HMI == 0){
-        return 0;
+        return NodoNulo;
     }else{
         return padre->HMI;
     }

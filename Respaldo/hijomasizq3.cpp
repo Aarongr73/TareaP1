@@ -26,7 +26,6 @@ void Arbol::Destruir(){
 void Arbol::DestruirR(nodo* borrando){
     nodo* nh;
     nh = HMI(borrando);
-    delete borrando;
     while(nh != 0){
         DestruirR(nh);
         nh = HD(nh);

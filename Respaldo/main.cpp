@@ -2,9 +2,10 @@
 //#include "ArbolLista.h"
 //#include "hijomasizquierdo.h"
 //#include "hijomasizq3.h"
-#include "hijomasizq3.h"
+//#include "hijomasizq2.h"
+#include "algoritmos2.h"
 #include "Cola.h"
-//#include "arreglopuntp.h"
+#include "arreglopuntp.h"
 using namespace std;
 
 void DesplegarMenuArbol(){
@@ -147,59 +148,7 @@ do{
 
    }while(seleccion!=0);
 }
-void DesplegarMenuCola(){
-    Cola cola;
-    cola.Crear();
-    int seleccion;
-    do{
-        cout<<"Seleccione alguna opcion\n"
-              "(1)Encolar\n"
-              "(2)Desencolar\n"
-              "(3)Frente\n"
-              "(4)Vacio?\n"
-              "(5)Vaciar\n"
-              "(0)Salir\n";
-        cin>>seleccion;
-        switch (seleccion) {
-        case 0:
-            break;
-        case 1:
-            int encolado;
-            cout<<"Introduzca el valor a encolar\n";
-            cin>>encolado;
-            cola.Encolar(encolado);
-            cout<<encolado<<" Encolado! \n";
-            break;
-        case 2:
-            int desencolado;
-            desencolado=cola.Desencolar();
-            cout<<desencolado<<" fue desencolado\n";
-            break;
-        case 3:
-            int frente;
-            frente=cola.Frente();
-            cout<<frente<<" es el frente de la cola\n";
-        case 4:
-            bool vacio;
-            vacio=cola.Vacia();
-            if(vacio)
-                cout<<"Esta vacia la colaaaaa!!!\n";
-            else
-                cout<<"La cola no esta vacia\n";
-            break;
-        case 5:
-            cola.Vaciar();
-            cout<<"Cola vaciada!\n";
-            break;
 
-        default:
-            cout<<"Entrada invalida\n";
-            break;
-        }
-
-    }while(seleccion!=0);
-
-}
 
 void menu(){
 int seleccion;
@@ -215,8 +164,7 @@ do{
         case 1:
             DesplegarMenuArbol();
         break;
-        case 2:
-            DesplegarMenuCola();
+
     }
 }while(seleccion!=0);
 }
@@ -227,16 +175,23 @@ int main()
       cola.Crear();
       cola.Encolar(8);
       cola.Desencolar();*/
-      Arbol arbol;
-      arbol.Crear();
-      arbol.PonerRaiz(1);
-      arbol.AgregarHijoI_esimo(arbol.Buscar(1),2,1);
-      arbol.AgregarHijoI_esimo(arbol.Buscar(1),3,1);
-      arbol.AgregarHijoI_esimo(arbol.Buscar(2),5,1);
-      arbol.AgregarHijoI_esimo(arbol.Buscar(2),6,1);
-      arbol.BorrarHoja(arbol.Buscar(3));
-      cout<<arbol.HD(arbol.Buscar(5));
+    //  menu();
 
+    Arbol arbol;
+    Algoritmos alg;
+    NodoPrincipal x;
+    arbol.Crear();
+    arbol.PonerRaiz('1');
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'2',1);
+    cout<<arbol.Padre(x)<<endl;
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'3',1);
+   cout<<arbol.Padre(x)<<endl;
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar('3'),'4',1);
+    cout<<arbol.Padre(x)<<endl;
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar('4'),'5',1);
+    cout<<arbol.Padre(x)<<endl;
+    alg.ListPost(arbol);
+    alg.NumNiveles(arbol);
 
 
 
