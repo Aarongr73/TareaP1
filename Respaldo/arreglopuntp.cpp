@@ -7,7 +7,9 @@ Arbol::Arbol(){
     numNodos = 1;
 }
 
+Arbol::~Arbol(){
 
+}
 
 void Arbol::Crear(){
     Arbol arbol=Arbol();

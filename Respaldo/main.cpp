@@ -1,11 +1,11 @@
 #include <iostream>
 //#include "ArbolLista.h"
-//#include "hijomasizquierdo.h"
+#include "hijomasizquierdo.h"
 //#include "hijomasizq3.h"
 //#include "hijomasizq2.h"
 #include "algoritmos2.h"
 #include "Cola.h"
-#include "arreglopuntp.h"
+//#include "arreglopuntp.h"
 using namespace std;
 
 void DesplegarMenuArbol(){
@@ -183,15 +183,12 @@ int main()
     arbol.Crear();
     arbol.PonerRaiz('1');
     x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'2',1);
-    cout<<arbol.Padre(x)<<endl;
     x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'3',1);
-   cout<<arbol.Padre(x)<<endl;
     x=arbol.AgregarHijoI_esimo(arbol.Buscar('3'),'4',1);
-    cout<<arbol.Padre(x)<<endl;
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('4'),'5',1);
-    cout<<arbol.Padre(x)<<endl;
-    alg.ListPost(arbol);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar('4'),'1',1);
+    cout<<alg.Repetidos(arbol);
     alg.NumNiveles(arbol);
+    alg.ListPost(arbol);
 
 
 

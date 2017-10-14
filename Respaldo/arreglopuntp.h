@@ -25,6 +25,7 @@ class Arbol {
 
     public:
         Arbol();
+        ~Arbol();
         void Crear();
         void Vaciar();
         void Destruir();

@@ -24,6 +24,19 @@ void Algoritmos::ListPostR(NodoPrincipal nodo, Arbol& arbol){
     }
     cout<<"Etiqueta del nodo: "<<arbol.Etiqueta(nodo)<<endl;
 }
+void Algoritmos::ListPre(Arbol& arbol){
+    if(!arbol.Vacio()){
+        ListPreR(arbol.Raiz(),arbol);
+    }
+}
+void Algoritmos::ListPreR(NodoPrincipal nodo, Arbol& arbol){
+    cout<<"Etiqueta del nodo: "<<arbol.Etiqueta(nodo)<<endl;
+    NodoPrincipal nh = arbol.HMI(nodo);
+    while(nh != NodoNulo){
+        ListPostR(nh,arbol);
+        nh = arbol.HD(nh);
+    }
+}
 
 int Algoritmos::NumNiveles(Arbol& arbol){
     if(arbol.NumElem() >= 1){
@@ -69,4 +82,29 @@ NodoPrincipal Algoritmos::AveriguarHIR(NodoPrincipal n, NodoPrincipal dedondeven
             }
         }
     }
+}
+bool Algoritmos::Repetidos( Arbol &arbol){
+    ListaCola<NodoPrincipal>lista;
+    NodoPrincipal n;
+    NodoPrincipal nh;
+    NodoPrincipal nh2;
+    int pos=0;
+    int recorrido=0;
+    int cant=arbol.NumElem();
+    lista.Agregar(arbol.Raiz());
+    while(pos<cant){
+        n=lista.Recuperar(pos);
+        nh=arbol.HMI(n);
+        while (nh!=NodoNulo) {
+            for(int i=0;i<lista.NumElem();i++){
+                if(arbol.Etiqueta(nh)==arbol.Etiqueta(lista.Recuperar(i)))
+                    return true;
+            }
+            lista.Agregar(nh);
+            nh=arbol.HD(nh);
+        }
+        ++pos;
+    }
+    return false;
+    
 }

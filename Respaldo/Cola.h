@@ -1,6 +1,6 @@
 #ifndef COLA_ED
 #define COLA_ED
-#define MAX 10
+#define MAX 1000
 #include <iostream>
 using namespace std;
 template <typename DataType> class Cola{
