@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+NodoPrincipal NodoNulo=0;
+
 Arbol::Arbol(int capacidad,NodePrincipal* raiz)
 :Elementos(capacidad)
 ,raiz(raiz)
@@ -20,11 +22,11 @@ void Arbol::Destruir(){
         while(HijoActual!=0){
             NodeHijos* nodoAux=HijoActual;
                 HijoActual=HijoActual->next;
-                delete nodoAux;
+
         }
         NodePrincipal* nodoAux=ActualPrincipal;
         ActualPrincipal=ActualPrincipal->siguiente;
-        delete nodoAux;
+
     }
 }
 void Arbol::Vaciar(){
@@ -42,7 +44,7 @@ void Arbol::PonerRaiz(int etiqueta){
 }
 NodePrincipal* Arbol::HMI(NodePrincipal* nodo){
     if(nodo->PrimerHijo == 0){
-        return 0;
+        return NodoNulo;
     }else{
         return nodo->PrimerHijo->listaPrincipal;
     }
@@ -198,6 +200,9 @@ NodePrincipal* Arbol::HD(NodePrincipal* nodo){
                     hijos=hijos->next;
                 }
             }else{
+                if(nodo->Etiqueta == hijos->listaPrincipal->Etiqueta){
+                    return NodoNulo;
+                }
                 encontrado = false;
             }
         }
@@ -240,7 +245,9 @@ bool Arbol::isRaiz(NodePrincipal *nodo){
     return false;
 }
 double Arbol::Etiqueta(NodePrincipal *nodo){
-    return nodo->Etiqueta;
+    if(nodo != NodoNulo){
+        return nodo->Etiqueta;
+    }
 }
 void Arbol::ModificarEtiqueta(NodePrincipal* nodo,double etiqueta){
     nodo->Etiqueta=etiqueta;
@@ -257,5 +264,18 @@ bool Arbol::EsHoja(NodePrincipal* nodo){
     }
 }
 
+NodePrincipal* Arbol::HMD(NodePrincipal* padre){
+    NodoPrincipal nh = HMI(padre);
+    if(nh != NodoNulo){
+        while(HD(nh) != NodoNulo){
+            nh = HD(nh);
+        }
+        if(HD(nh) == NodoNulo){
+            return nh;
+        }
+    }else{
+        return NodoNulo;
+    }
+}
 
 

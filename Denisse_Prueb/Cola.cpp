@@ -1,9 +1,9 @@
-#include "Cola.h"
+/*#include "Cola.h"
 #include<iostream>
 
 using namespace std;
 
-void Cola::Crear(){
+/*void Cola::Crear(){
     salida = &vec_circ[0];
     entrada = salida;
     numElem = 0;
@@ -58,3 +58,4 @@ void Cola::Encolar(int elemento){
 int Cola::Frente(){
     return *salida;
 }
+*/

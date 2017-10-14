@@ -15,6 +15,7 @@ public:
     }
 };
 typedef Node* NodoPrincipal;
+extern NodoPrincipal NodoNulo;
 
 class Arbol
 {
@@ -47,6 +48,7 @@ public:
     int NumElem();
     void ModificarEtiqueta(Node* nodo,int etiqueta);
     void MostrarEtiqueta(Node* nodo);
+    Node* HMD(Node*);
 
 };
 

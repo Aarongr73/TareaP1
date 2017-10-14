@@ -5,6 +5,7 @@
 #include "hijomasizquierdo.h"
 #include <iostream>
 using namespace std;
+NodoPrincipal NodoNulo=0;
 
 Arbol::Arbol(Node* raiz, int elementos)
     :raiz(raiz)
@@ -208,5 +209,19 @@ bool Arbol::EsHoja(Node* nodo){
         return true;
     }else{
         return false;
+    }
+}
+
+Node* Arbol::HMD(Node* padre){
+    NodoPrincipal nh = padre->Hmi;
+    if(nh != NodoNulo){
+        while(HD(nh) != NodoNulo){
+            nh = HD(nh);
+        }
+        if(HD(nh) == NodoNulo){
+            return nh;
+        }
+    }else{
+        return NodoNulo;
     }
 }
