@@ -130,3 +130,10 @@ bool Algoritmos::BusquedaR(NodoPrincipal actual,int etiqueta, bool node,Arbol& a
         nh = arbol.HD(nh);
     }
 }
+void  Algoritmos::ListadoHijos(Arbol arbol,NodoPrincipal nodo){
+    NodoPrincipal n=arbol.HMI(nodo);
+    while(n!=NodoNulo){
+        cout<<arbol.Etiqueta(n)<<" ";
+        n=arbol.HD(n);
+    }
+}

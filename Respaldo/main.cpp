@@ -1,11 +1,11 @@
 #include <iostream>
 //#include "ArbolLista.h"
 //#include "hijomasizquierdo.h"
-#include "hijomasizq3.h"
+//#include "hijomasizq3.h"
 //#include "hijomasizq2.h"
 #include "algoritmos2.h"
 #include "Cola.h"
-//#include "arreglopuntp.h"
+#include "arreglopuntp.h"
 using namespace std;
 
 void DesplegarMenuArbol(){
@@ -190,6 +190,7 @@ int main()
     alg.ListPost(arbol);
     cout<<alg.Repetidos(arbol)<<endl;
     cout<<alg.Busqueda(arbol,'7')<<endl;
+    alg.ListadoHijos(arbol,arbol.Buscar('1'));
 
 
 

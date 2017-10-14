@@ -4,12 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    hijomasizq3.cpp \
+  arreglopuntp.cpp \
     algoritmos2.cpp \
 
 
 HEADERS += \
     Cola.h \
-   hijomasizq3.h \
+   arreglopuntp.h \
     algoritmos2.h \
     listacola.h
