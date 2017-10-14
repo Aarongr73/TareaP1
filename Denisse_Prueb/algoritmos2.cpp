@@ -6,8 +6,7 @@ using namespace std;
 
 
 int Max = 0;
-NodoPrincipal busc = 0;
-
+int nivelG;
 
 
 void Algoritmos::ListPost(Arbol& arbol){
@@ -29,7 +28,6 @@ int Algoritmos::NumNiveles(Arbol& arbol){
     if(arbol.NumElem() >= 1){
         NumNivelesR(arbol.Raiz(), 1,arbol);
     }
-    cout<<Max<<endl;
     return Max;
 }
 
@@ -47,34 +45,8 @@ void Algoritmos::NumNivelesR(NodoPrincipal n, int nivel, Arbol &arbol){
     }
 }
 
-/*void Algoritmos::AveriguarHI(NodoPrincipal n,Arbol arbol){
-    if(!arbol.Vacio()){
-        busc = n;
-        AveriguarHIR(arbol.Raiz(), 0,arbol);
-    }
-}
-
-NodoPrincipal Algoritmos::AveriguarHIR(NodoPrincipal n, NodoPrincipal dedondevengo, Arbol &arbol){
-    if(busc == NodoNulo){
-        cout<<arbol.Etiqueta(dedondevengo)<<endl;
-        return dedondevengo;
-    }else{
-        NodoPrincipal nh = arbol.HMI(n);
-        if(busc == nh){
-            return NodoNulo;
-        }else{
-            while(nh != NodoNulo){
-                AveriguarHIR(arbol.HD(nh), nh,arbol);
-                nh = arbol.HD(nh);
-            }
-        }
-    }
-}*/
-
-
 void Algoritmos::Copiar(Arbol& arbol1){
     Arbol arbolCopia;
-    double prueba;
     arbolCopia.Crear();
     if(arbol1.NumElem() != 0){
         Cola<NodoPrincipal> cola1;
@@ -101,9 +73,45 @@ void Algoritmos::Copiar(Arbol& arbol1){
             }
         }
     }
-
-    cout<<"Salio copiar"<<endl;
     ListPost(arbolCopia);
 }
 
+void Algoritmos::ListarIesimo(Arbol& arbol, int nivel){
+    nivelG = nivel;
+    if(!arbol.Vacio()){
+        ListarIesimoR(arbol, 1, arbol.Raiz());
+    }
+}
 
+void Algoritmos::ListarIesimoR(Arbol& arbol, int actual, NodoPrincipal nodo){
+    if(actual == nivelG){
+        cout<<arbol.Etiqueta(nodo)<<endl;
+    }else{
+        NodoPrincipal nh = arbol.HMI(nodo);
+        while(nh != NodoNulo){
+            ListarIesimoR(arbol, actual+1, nh);
+            nh = arbol.HD(nh);
+        }
+    }
+}
+
+NodoPrincipal Algoritmos::AveriguarHI(Arbol& arbol, NodoPrincipal hermano){
+    if(!arbol.Vacio()){
+        Cola<NodoPrincipal> cola;
+        cola.Crear();
+        cola.Encolar(arbol.Raiz());
+        while(!cola.Vacia()){
+            NodoPrincipal n = cola.Desencolar();
+            if(arbol.HD(n) == hermano){
+                return n;
+            }else{
+                NodoPrincipal nh = arbol.HMI(n);
+                while(nh != NodoNulo){
+                    cola.Encolar(nh);
+                    nh = arbol.HD(nh);
+                }
+            }
+        }
+        cola.Destruir();
+    }
+}

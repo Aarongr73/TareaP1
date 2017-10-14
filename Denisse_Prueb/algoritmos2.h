@@ -6,19 +6,22 @@
 //#include"hijomasizq2.h"
 //#include"hijomasizquierdo.h"
 #include"ArbolLista.h"
+//
 //#include "arreglopuntp.h"
-
+/*HI arreglado
+*Listar Iesimo nivel implementado*/
 class Algoritmos{
 
 private:
     void ListPostR(NodoPrincipal, Arbol&);
     void NumNivelesR(NodoPrincipal, int, Arbol&);
-   // NodoPrincipal AveriguarHIR(NodoPrincipal, NodoPrincipal, Arbol& arbol);
+    void ListarIesimoR(Arbol&, int, NodoPrincipal);
 public:
     void ListPost(Arbol&);
     int NumNiveles(Arbol&);
     void Copiar(Arbol&);
-   // void AveriguarHI(NodoPrincipal, Arbol arbol);
+    void ListarIesimo(Arbol&, int);
+    NodoPrincipal AveriguarHI(Arbol&, NodoPrincipal);
 };
 
 #endif // ALGORITMOS2_H

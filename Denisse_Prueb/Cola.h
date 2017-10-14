@@ -54,7 +54,7 @@ private:
 
     Datatype Cola<Datatype>::Desencolar(){
         if(numElem == 0){
-            cout<<"Pila vacia."<<endl;
+            cout<<"Cola vacia."<<endl;
         }else{
             elemento = *salida;
             if(numElem > MAX-1){ //Si el dato que sale se va por un extremo hay que hacer que dé la vuelta.
@@ -71,7 +71,7 @@ private:
 
     void Cola<Datatype>::Encolar(const Datatype& elemento){
         if(numElem == MAX){
-            cout<<"Pila llena."<<endl;
+            cout<<"Cola llena."<<endl;
         }else{
             *entrada = elemento; //Si el dato que sale se va por un extremo hay que hacer que dé la vuelta.
             if(numElem > MAX-1){

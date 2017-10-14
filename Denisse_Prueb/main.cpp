@@ -185,21 +185,25 @@ int main()
     Algoritmos alg;
     NodoPrincipal x;
     arbol.Crear();
-    arbol.PonerRaiz('1');
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'2',1);
+    arbol.PonerRaiz(1);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar(1),2,1);
    // cout<<arbol.Padre(x)<<endl;
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'3',2);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar(1),3,2);
   //  cout<<arbol.Padre(x)<<endl;
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('3'),'4',1);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar(3),4,1);
     //cout<<arbol.Etiqueta(arbol.Padre(arbol.Buscar(4)))<<endl;
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('4'),'5',1);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar(3),5,2);
    //
     alg.ListPost(arbol);
     alg.NumNiveles(arbol);
    alg.Copiar(arbol);
-
-
-
+   alg.ListarIesimo(arbol, 2);
+    alg.ListarIesimo(arbol, 1);
+    cout<<"****************************"<<endl;
+  alg.AveriguarHI(arbol, arbol.Buscar(1));
+   alg.AveriguarHI(arbol, arbol.Buscar(5));
+  //  arbol.HD(arbol.Buscar(2));
+//    arbol.HD(arbol.Buscar(1));
 
 
 
