@@ -25,7 +25,6 @@ class Arbol {
 
     public:
         Arbol();
-        ~Arbol();
         void Crear();
         void Vaciar();
         void Destruir();
@@ -45,6 +44,8 @@ class Arbol {
         int BuscarIndice(char etiq);
         int Buscar(char etiqueta);
         void MostrarEtiqueta(int nodo);
+        int HMD(int);
 
 };
 #endif
+

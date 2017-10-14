@@ -16,7 +16,7 @@ struct NodeHijos
 };
 struct NodePrincipal
 {
-   int Etiqueta;
+   double Etiqueta;
    NodeHijos* PrimerHijo;
    NodePrincipal* siguiente;
 
@@ -62,7 +62,9 @@ public:
     void Destruir();
     void Vaciar();
     void MostrarEtiqueta(NodePrincipal* nodo);
+    NodePrincipal* HMD(NodePrincipal*);
 
 };
+
 
 #endif // ARBOLISTA_H

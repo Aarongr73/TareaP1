@@ -16,6 +16,7 @@ public:
 
    {
        ultimo=0;
+       numelem=0;
 
    }
    ~ListaCola(){

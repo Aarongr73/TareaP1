@@ -7,9 +7,7 @@ Arbol::Arbol(){
     numNodos = 1;
 }
 
-Arbol::~Arbol(){
 
-}
 
 void Arbol::Crear(){
     Arbol arbol=Arbol();
@@ -29,18 +27,6 @@ bool Arbol::Vacio(){
 
 int Arbol::Raiz(){
     return 0;
-}
-
-int Arbol::HMI(int nodo){
-    int pos = nodo;
-    int i = pos+1;
-    while(Arreglo[i].nodoPadre!=pos){
-        ++i;
-        if(i>NumElem()){
-            return NodoNulo;
-        }
-    }
-    return i;
 }
 
 int Arbol::HD(int nodo){
@@ -172,4 +158,30 @@ void Arbol::Destruir(){
 }
 void Arbol::MostrarEtiqueta(int nodo){
     cout<<Arreglo[nodo].etiqueta;
+}
+
+int Arbol::HMD(int padre){
+    int nh = HMI(padre);
+    if(nh != NodoNulo){
+        while(HD(nh) != NodoNulo){
+            nh = HD(nh);
+        }
+        if(HD(nh) == NodoNulo){
+            return nh;
+        }
+    }else{
+        return NodoNulo;
+    }
+}
+
+int Arbol::HMI(int nodo){
+    int pos = nodo;
+    int i = pos+1;
+    while(Arreglo[i].nodoPadre!=pos){
+        ++i;
+        if(i>NumElem()){
+            return NodoNulo;
+        }
+    }
+    return i;
 }

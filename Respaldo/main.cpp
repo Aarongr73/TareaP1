@@ -1,7 +1,7 @@
 #include <iostream>
 //#include "ArbolLista.h"
-#include "hijomasizquierdo.h"
-//#include "hijomasizq3.h"
+//#include "hijomasizquierdo.h"
+#include "hijomasizq3.h"
 //#include "hijomasizq2.h"
 #include "algoritmos2.h"
 #include "Cola.h"
@@ -185,10 +185,10 @@ int main()
     x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'2',1);
     x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'3',1);
     x=arbol.AgregarHijoI_esimo(arbol.Buscar('3'),'4',1);
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('4'),'1',1);
-    cout<<alg.Repetidos(arbol);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar('4'),'6',1);
     alg.NumNiveles(arbol);
     alg.ListPost(arbol);
+    cout<<alg.Repetidos(arbol);
 
 
 

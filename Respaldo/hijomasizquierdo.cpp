@@ -211,3 +211,17 @@ bool Arbol::EsHoja(Node* nodo){
         return false;
     }
 }
+
+Node* Arbol::HMD(Node* padre){
+    NodoPrincipal nh = padre->Hmi;
+    if(nh != NodoNulo){
+        while(HD(nh) != NodoNulo){
+            nh = HD(nh);
+        }
+        if(HD(nh) == NodoNulo){
+            return nh;
+        }
+    }else{
+        return NodoNulo;
+    }
+}

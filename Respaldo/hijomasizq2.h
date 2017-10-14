@@ -47,6 +47,7 @@ public:
     void MostrarArbol();
     nodo* Buscar(int);
     void MostrarEtiqueta(nodo* nodo);
+    nodo* HMD(nodo*);
 };
 #endif // ARBOL_17
 

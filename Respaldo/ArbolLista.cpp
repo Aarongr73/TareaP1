@@ -245,7 +245,9 @@ bool Arbol::isRaiz(NodePrincipal *nodo){
     return false;
 }
 double Arbol::Etiqueta(NodePrincipal *nodo){
-    return nodo->Etiqueta;
+    if(nodo != NodoNulo){
+        return nodo->Etiqueta;
+    }
 }
 void Arbol::ModificarEtiqueta(NodePrincipal* nodo,double etiqueta){
     nodo->Etiqueta=etiqueta;
@@ -261,6 +263,23 @@ bool Arbol::EsHoja(NodePrincipal* nodo){
         return false;
     }
 }
+
+NodePrincipal* Arbol::HMD(NodePrincipal* padre){
+    NodoPrincipal nh = HMI(padre);
+    if(nh != NodoNulo){
+        while(HD(nh) != NodoNulo){
+            nh = HD(nh);
+        }
+        if(HD(nh) == NodoNulo){
+            return nh;
+        }
+    }else{
+        return NodoNulo;
+    }
+}
+
+
+
 
 
 

@@ -106,5 +106,5 @@ bool Algoritmos::Repetidos( Arbol &arbol){
         ++pos;
     }
     return false;
-    
+
 }

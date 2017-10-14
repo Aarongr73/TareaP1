@@ -1,71 +1,91 @@
 #ifndef COLA_ED
 #define COLA_ED
-#define MAX 1000
+#define MAX 100
 #include <iostream>
 using namespace std;
-template <typename DataType> class Cola{
-
-private:
-    DataType vec_circ[MAX];
-    DataType elemento;
-    int* entrada;
-    int* salida;
-    int numElem;
+template <typename Datatype>
+class Cola{
 public:
-    void Crear(){
+    void Crear();
+    void Destruir();
+    void Vaciar();
+    bool Vacia();
+    void Encolar(const Datatype&);
+    Datatype Desencolar();
+    Datatype Frente();
+private:
+    Datatype vec_circ[MAX];
+    Datatype elemento;
+    Datatype* entrada;
+    Datatype* salida;
+    int numElem;
+};
+    template <typename Datatype>
+
+    void Cola<Datatype>::Crear(){
+        salida = &vec_circ[0];
+        entrada = salida;
+        numElem = 0;
+    }
+    template <typename Datatype>
+
+    void Cola<Datatype>::Destruir(){
+
+    }
+    template <typename Datatype>
+
+    void Cola<Datatype>::Vaciar(){
         salida = &vec_circ[0];
         entrada = salida;
         numElem = 0;
     }
 
-    void Destruir(){
+    template <typename Datatype>
 
-    }
-
-    void Vaciar(){
-        salida = &vec_circ[0];
-        entrada = salida;
-        numElem = 0;
-    }
-
-    bool Vacia(){
-        if(salida == entrada){
+    bool Cola<Datatype>::Vacia(){
+        if(numElem == 0){
             return true;
         }else{
             return false;
         }
     }
 
-    DataType Desencolar(){
-        if(entrada == salida){
+    template <typename Datatype>
+
+    Datatype Cola<Datatype>::Desencolar(){
+        if(numElem == 0){
             cout<<"Pila vacia."<<endl;
-        }
-        elemento = *salida;
-        if(*salida > MAX-1){
-            salida = 0;
         }else{
-            salida++;
-        }
-        numElem--;
-        return elemento;
+            elemento = *salida;
+            if(numElem > MAX-1){ //Si el dato que sale se va por un extremo hay que hacer que dé la vuelta.
+                salida = 0;
+            }else{
+                salida++;
+            }
+            numElem--;
+            return elemento;
+            }
     }
 
-    void Encolar(int elemento){
-        if(salida == entrada+1){
+    template <typename Datatype>
+
+    void Cola<Datatype>::Encolar(const Datatype& elemento){
+        if(numElem == MAX){
             cout<<"Pila llena."<<endl;
-            return;
-        }
-        *entrada = elemento;
-        if(*entrada > MAX-1){
-            entrada = 0;
         }else{
-            entrada++;
+            *entrada = elemento; //Si el dato que sale se va por un extremo hay que hacer que dé la vuelta.
+            if(numElem > MAX-1){
+                entrada = 0;
+            }else{
+                entrada++;
+            }
+            numElem++;
         }
-        numElem++;
     }
+    template <typename Datatype>
 
-    DataType Frente(){
+    Datatype Cola<Datatype>::Frente(){
         return *salida;
     }
-};
+
 #endif // COLA_E
