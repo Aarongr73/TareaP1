@@ -1,6 +1,7 @@
 #include"hijomasizq3.h"
 #include<iostream>
 using namespace std;
+NodoPrincipal NodoNulo=0;
 
 Arbol::Arbol(){
     numNodos = 0;
@@ -25,7 +26,6 @@ void Arbol::Destruir(){
 void Arbol::DestruirR(nodo* borrando){
     nodo* nh;
     nh = HMI(borrando);
-    delete borrando;
     while(nh != 0){
         DestruirR(nh);
         nh = HD(nh);
@@ -126,23 +126,23 @@ nodo *Arbol::AgregarHijoI_esimo(nodo *padre, int etiqueta, int pos){
     nodo* nuevoHijo=new nodo();
     nuevoHijo->padre = padre;
     nuevoHijo->Etiqueta=etiqueta;
-    if(padre->HMI==nullptr){
+    if(padre->HMI==NodoNulo){
         padre->HMI=nuevoHijo;
     }else{
         if(pos==1){
             nuevoHijo->HD=padre->HMI;
             padre->HMI=nuevoHijo;
-            nuevoHijo->HI = nullptr;
+            nuevoHijo->HI = NodoNulo;
         }else if(pos==NumHijos(padre)+1){
             nodo* Actual=padre->HMI;
-            while(Actual->HD!=nullptr){
+            while(Actual->HD!=NodoNulo){
                 Actual=Actual->HD;
             }
             Actual->HD=nuevoHijo;
             nuevoHijo->HI = Actual;
         }else{
             int cont=1;
-            nodo* previo=nullptr;
+            nodo* previo=NodoNulo;
             nodo* Actual=padre->HMI;
             while(cont<=pos-1){
                 previo=Actual;
@@ -165,22 +165,6 @@ bool Arbol::Vacio(){
         return false;
     }
 }
-
-/*void Arbol::MostrarArbolR(nodo* node){
-    nodo* nh = new nodo();
-    cout<<"Nodos: "<<node->etiqueta<<endl;
-    nh = node->HMI;
-    while(nh != 0){
-        MostrarArbolR(nh);
-        nh = HermanoDerecho(nh);
-    }
-}
-
-void Arbol::MostrarArbol(){
-    if(!Vacio()){
-        MostrarArbolR(Raiz());
-    }
-}*/
 
 bool Arbol::EsHoja(nodo* node){
     if(HMI(node) == 0){
@@ -224,3 +208,16 @@ void Arbol::MostrarEtiqueta(nodo* nodo){
     cout<<nodo->Etiqueta;
 }
 
+nodo* Arbol::HMD(nodo* padre){
+    NodoPrincipal nh = padre->HMI;
+    if(nh != NodoNulo){
+        while(HD(nh) != NodoNulo){
+            nh = HD(nh);
+        }
+        if(HD(nh) == NodoNulo){
+            return nh;
+        }
+    }else{
+        return NodoNulo;
+    }
+}

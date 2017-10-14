@@ -16,7 +16,7 @@ struct NodeHijos
 };
 struct NodePrincipal
 {
-   int Etiqueta;
+   double Etiqueta;
    NodeHijos* PrimerHijo;
    NodePrincipal* siguiente;
 
@@ -28,8 +28,8 @@ struct NodePrincipal
    {
    }
 };
-
 typedef NodePrincipal* NodoPrincipal;
+extern  NodoPrincipal NodoNulo;
 
 
 class Arbol
@@ -62,6 +62,7 @@ public:
     void Destruir();
     void Vaciar();
     void MostrarEtiqueta(NodePrincipal* nodo);
+    NodePrincipal* HMD(NodePrincipal*);
 
 };
 

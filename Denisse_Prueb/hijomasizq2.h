@@ -16,18 +16,18 @@ struct nodo{
         }
 };
 typedef nodo* NodoPrincipal;
-
+extern NodoPrincipal NodoNulo;
 class Arbol{
 private:
     nodo* raiz;
     int numNodos;
     void DestruirR(nodo*);
     void MostrarArbolR(nodo*);
-    bool EsHoja(nodo*);
     nodo* PreOrdenBusqueda(nodo*, int, nodo*);
 public:
     Arbol();
     ~Arbol();
+    bool EsHoja(nodo*);
     void Crear();
     void Destruir();
     void Vaciar();
@@ -47,6 +47,7 @@ public:
     void MostrarArbol();
     nodo* Buscar(int);
     void MostrarEtiqueta(nodo* nodo);
+    nodo* HMD(nodo*);
 };
 #endif // ARBOL_17
 

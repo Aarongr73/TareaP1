@@ -5,12 +5,18 @@
 using namespace std;
 
 struct Nodo{
-    char Etiqueta;
+    char etiqueta;
     int nodoPadre;
+    Nodo(char etiq=' ',int padre=-1)
+        :etiqueta(etiq)
+        ,nodoPadre(padre)
+    {
+
+    }
 };
 
-typedef Nodo NodoPrincipal;
-
+typedef int NodoPrincipal;
+extern int NodoNulo;
 class Arbol {
 
     private:
@@ -19,26 +25,26 @@ class Arbol {
 
     public:
         Arbol();
-    ~Arbol();
         void Crear();
         void Vaciar();
         void Destruir();
         bool Vacio();
-        Nodo Raiz();
-        Nodo HMI(Nodo);
-        Nodo HD(Nodo);
-        Nodo Padre(Nodo);
-        bool EsHoja(Nodo);
-        char Etiqueta(Nodo);
+        int Raiz();
+        int HMI(int nodo);
+        int HD(int);
+        int Padre(int);
+        bool EsHoja(int nodo);
+        char Etiqueta(int nodo);
         int NumElem();
-        int NumHijos(Nodo);
-        void ModificarEtiqueta(Nodo, char);
-        Nodo AgregarHijoI_esimo(Nodo, char,int);
-        void BorrarHoja(Nodo);
+        int NumHijos(int nodo);
+        void ModificarEtiqueta(int nodo, char etiq);
+        int AgregarHijoI_esimo(int nodo, char etiq, int);
+        void BorrarHoja(int);
         void PonerRaiz(char);
-        int BuscarIndice(char etiqueta);
-        Nodo Buscar(char etiqueta);
-        void MostrarEtiqueta(Nodo nodo);
+        int BuscarIndice(char etiq);
+        int Buscar(char etiqueta);
+        void MostrarEtiqueta(int nodo);
+        int HMD(int);
 
 };
 #endif
