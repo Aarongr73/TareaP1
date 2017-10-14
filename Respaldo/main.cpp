@@ -188,7 +188,8 @@ int main()
     x=arbol.AgregarHijoI_esimo(arbol.Buscar('4'),'6',1);
     alg.NumNiveles(arbol);
     alg.ListPost(arbol);
-    cout<<alg.Repetidos(arbol);
+    cout<<alg.Repetidos(arbol)<<endl;
+    cout<<alg.Busqueda(arbol,'7')<<endl;
 
 
 

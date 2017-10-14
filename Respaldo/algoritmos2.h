@@ -24,6 +24,8 @@ public:
     void Agrega();
     void ListPre(Arbol& arbol);
     bool Repetidos(Arbol &arbol);
+    bool BusquedaR(NodoPrincipal actual, int etiqueta, bool node, Arbol &arbol);
+    bool Busqueda(Arbol&,int etiqueta);
 };
 
 #endif // ALGORITMOS2_H

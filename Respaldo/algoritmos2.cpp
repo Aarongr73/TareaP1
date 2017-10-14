@@ -108,3 +108,25 @@ bool Algoritmos::Repetidos( Arbol &arbol){
     return false;
 
 }
+bool Algoritmos::Busqueda(Arbol& arbol, int etiqueta){
+    bool found = 0;
+    if(!arbol.Vacio())
+        found = BusquedaR(arbol.Raiz(), etiqueta, found,arbol);
+    return found;
+
+}
+
+bool Algoritmos::BusquedaR(NodoPrincipal actual,int etiqueta, bool node,Arbol& arbol){
+    if(arbol.Etiqueta(actual)==etiqueta){
+         return true;
+    }
+
+    NodoPrincipal nh = arbol.HMI(actual);
+    while(nh != NodoNulo ){
+        node = BusquedaR(nh,etiqueta,node,arbol);
+        if(node){
+            return node;
+        }
+        nh = arbol.HD(nh);
+    }
+}
