@@ -15,18 +15,20 @@ private:
     void ListPreR(NodoPrincipal,Arbol& arbol);
     void ListPostR(NodoPrincipal, Arbol& arbol);
     void NumNivelesR(NodoPrincipal, int, Arbol& arbol);
-    NodoPrincipal AveriguarHIR(NodoPrincipal, NodoPrincipal, Arbol& arbol);
+    void ListarIesimoR(Arbol&, int, NodoPrincipal);
 public:
 
     void ListPost(Arbol& arbol);
     int NumNiveles(Arbol& arbol);
-    void AveriguarHI(NodoPrincipal, Arbol arbol);
-    void Agrega();
+    void ListarIesimo(Arbol&, int);
+//    void Agrega();
     void ListPre(Arbol& arbol);
     bool Repetidos(Arbol &arbol);
     bool BusquedaR(NodoPrincipal actual, int etiqueta, bool node, Arbol &arbol);
     bool Busqueda(Arbol&,int etiqueta);
     void ListadoHijos(Arbol arbol,NodoPrincipal nodo);
+    NodoPrincipal AveriguarHI(Arbol&, NodoPrincipal);
+    void Copiar(Arbol&);
 };
 
 #endif // ALGORITMOS2_H
