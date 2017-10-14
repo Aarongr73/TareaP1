@@ -187,26 +187,28 @@ int Arbol::NumHijos(NodePrincipal* padre){
 NodePrincipal* Arbol::HD(NodePrincipal* nodo){
     NodePrincipal* iterador=this->Raiz();
     bool encontrado=true;
+    bool sublista=true;
     NodePrincipal* hermanoDerecho = 0;
 
     while(iterador!=0 && encontrado){
+        sublista=true;
         NodeHijos* hijos=iterador->PrimerHijo;
-        while(hijos!=0 && encontrado){
+        while(hijos!=0 && sublista){
             if(hijos->next != 0){
                 if(nodo->Etiqueta == hijos->listaPrincipal->Etiqueta){
                     hermanoDerecho=hijos->next->listaPrincipal;
                     encontrado=false;
+                    sublista=false;
                 }else{
                     hijos=hijos->next;
                 }
             }else{
-                if(nodo->Etiqueta == hijos->listaPrincipal->Etiqueta){
-                    return NodoNulo;
-                }
-                encontrado = false;
+                iterador=iterador->siguiente;
+                sublista=false;
             }
         }
         iterador=iterador->siguiente;
+
     }
     return hermanoDerecho;
 }

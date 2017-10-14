@@ -1,11 +1,11 @@
 #include <iostream>
-//#include "ArbolLista.h"
+#include "ArbolLista.h"
 //#include "hijomasizquierdo.h"
 //#include "hijomasizq3.h"
 //#include "hijomasizq2.h"
 #include "algoritmos2.h"
 #include "Cola.h"
-#include "arreglopuntp.h"
+//#include "arreglopuntp.h"
 using namespace std;
 
 void DesplegarMenuArbol(){
@@ -181,16 +181,16 @@ int main()
     Algoritmos alg;
     NodoPrincipal x;
     arbol.Crear();
-    arbol.PonerRaiz('1');
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'2',1);
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('1'),'3',1);
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('3'),'4',1);
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar('4'),'6',1);
+    arbol.PonerRaiz(1);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar(1),2,1);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar(1),3,2);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar(3),4,1);
+    x=arbol.AgregarHijoI_esimo(arbol.Buscar(3),5,2);
     alg.NumNiveles(arbol);
     alg.ListPost(arbol);
-    cout<<alg.Repetidos(arbol)<<endl;
-    cout<<alg.Busqueda(arbol,'7')<<endl;
-    alg.ListadoHijos(arbol,arbol.Buscar('1'));
+    alg.ListadoHijos(arbol,arbol.Buscar(3));
+    cout<<arbol.HD(arbol.Buscar(4))->Etiqueta;
+
 
 
 
