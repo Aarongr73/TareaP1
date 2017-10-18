@@ -28,7 +28,12 @@ public:
     bool Busqueda(Arbol&,int etiqueta);
     void ListadoHijos(Arbol arbol,NodoPrincipal nodo);
     NodoPrincipal AveriguarHI(Arbol&, NodoPrincipal);
-    void Copiar(Arbol&);
+    Arbol Copiar(Arbol&, Arbol &arbolCopia);
+    void ListadoPN(Arbol&);
+    bool Iguales(Arbol&, Arbol&);
+    int NumnNiveles(Arbol&);
+    void BorrarSubArbol(NodoPrincipal, Arbol&);
+    int Profundidad(NodoPrincipal, Arbol&);
 };
 
 #endif // ALGORITMOS2_H

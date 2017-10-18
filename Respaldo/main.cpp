@@ -178,6 +178,7 @@ int main()
     //  menu();
 
     Arbol arbol;
+    Arbol arbol2;
     Algoritmos alg;
     NodoPrincipal x;
     arbol.Crear();
@@ -189,8 +190,10 @@ int main()
     alg.NumNiveles(arbol);
     alg.ListPost(arbol);
     alg.ListadoHijos(arbol,arbol.Buscar(3));
-    cout<<arbol.HD(arbol.Buscar(4))->Etiqueta;
 
+
+
+   arbol2=alg.Copiar(arbol,arbol2);
 
 
 

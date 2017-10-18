@@ -123,11 +123,8 @@ void Arbol::BorrarHoja(NodePrincipal* nodo){
                     Previo->next=Actual->next;
                     Actual->next=0;
                 }
-                if(!NoEliminadoLista){
-                    delete nodoAux->listaPrincipal;
-                }
+
                 nodoAux->listaPrincipal=0;
-                delete nodoAux;
                 NoEliminadoSublista=false;
             }
             Previo=Actual;
