@@ -81,7 +81,8 @@ NodoPrincipal Algoritmos::AveriguarHI(Arbol& arbol, NodoPrincipal hermano){
     }
 }
 
-bool Algoritmos::Repetidos( Arbol &arbol){
+bool Algoritmos::
+Repetidos( Arbol &arbol){
     ListaCola<NodoPrincipal>lista;
     NodoPrincipal n;
     NodoPrincipal nh;
