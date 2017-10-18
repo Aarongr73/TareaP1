@@ -77,6 +77,7 @@ NodoPrincipal Algoritmos::AveriguarHI(Arbol& arbol, NodoPrincipal hermano){
                 }
             }
         }
+        return NodoNulo;
         cola.Destruir();
     }
 }
@@ -157,37 +158,36 @@ void Algoritmos::ListarIesimoR(Arbol& arbol, int actual, NodoPrincipal nodo){
     }
 }
 
-Arbol Algoritmos::Copiar(Arbol& arbol1, Arbol& arbolCopia){
-
+void Algoritmos::Copiar(Arbol& arbol1){
+    Arbol arbolCopia;
     arbolCopia.Crear();
-    if(arbol1.NumElem() !=0){
-        Cola<NodoPrincipal> cola1; //Cola arbol original
-        Cola<NodoPrincipal> cola2; //Cola copia 
+    if(arbol1.NumElem() != 0){
+        Cola<NodoPrincipal> cola1;
+        Cola<NodoPrincipal> cola2;
         NodoPrincipal nodo1;
         NodoPrincipal nodo2;
         NodoPrincipal nodoH1;
         NodoPrincipal nodoH2;
         cola1.Crear();
         cola2.Crear();
-        arbolCopia.PonerRaiz(arbol1.Etiqueta(arbol1.Raiz())); //Metemos la raiz de la copia con la etiqueta de la otra raiz
+        arbolCopia.PonerRaiz(arbol1.Etiqueta(arbol1.Raiz()));
         cola1.Encolar(arbol1.Raiz());
         cola2.Encolar(arbolCopia.Raiz());
-        while(!cola1.Vacia()){  //Niveles
+        while(!cola1.Vacia()){
             nodo1 = cola1.Desencolar();
             nodo2 = cola2.Desencolar();
             nodoH1 = arbol1.HMI(nodo1);
             while(nodoH1 != NodoNulo){
-                arbolCopia.AgregarHijoI_esimo(nodo2, arbol1.Etiqueta(nodoH1), arbolCopia.NumHijos(nodo2)+1); //Agregarlo de ultimo
-                nodoH2 = arbolCopia.HMD(nodo2); //Metodo Hijo Mas Derecho
+                arbolCopia.AgregarHijoI_esimo(nodo2, arbol1.Etiqueta(nodoH1), arbolCopia.NumHijos(nodo2)+1);
+                nodoH2 = arbolCopia.HMD(nodo2);
                 cola1.Encolar(nodoH1);
                 cola2.Encolar(nodoH2);
                 nodoH1 = arbol1.HD(nodoH1);
             }
         }
     }
-//    ListPost(arbolCopia);
-    return arbolCopia;
 }
+
 void Algoritmos::ListadoPN(Arbol& arbol) {
   Cola<NodoPrincipal> cola;
   if (!arbol.Vacio()) {
