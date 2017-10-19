@@ -179,7 +179,13 @@ void menuAlgoritmos(Arbol& arbol,Arbol& arbol2){
            algoritmos.ListadoPN(arbol);
            break;
        case 4:
-           algoritmos.Iguales(arbol,arbol2);
+       {
+           bool iwales=algoritmos.Iguales(arbol,arbol2);
+           if(iwales)
+               cout<<"Son iguales\n";
+           else
+               cout<<"No son iguales\n";
+       }
            break;
        case 5:
        {
