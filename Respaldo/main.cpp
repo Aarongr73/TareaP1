@@ -339,9 +339,6 @@ int main()
 
 
 
-        cout<<"Copia del arbol"<<endl;
-        alg.Copiar(arbolP1,arbol2);
-       // alg.ListPost(arbol2);
 
 
 
