@@ -200,10 +200,14 @@ NodePrincipal* Arbol::HD(NodePrincipal* nodo){
                     hijos=hijos->next;
                 }
             }else{
-                iterador=iterador->siguiente;
+                if(nodo->Etiqueta == hijos->listaPrincipal->Etiqueta){
+                    return NodoNulo;
+                }
+
                 sublista=false;
             }
         }
+
         iterador=iterador->siguiente;
 
     }

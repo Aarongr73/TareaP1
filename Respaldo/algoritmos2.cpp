@@ -30,7 +30,7 @@ void Algoritmos::ListPre(Arbol& arbol){
     }
 }
 void Algoritmos::ListPreR(NodoPrincipal nodo, Arbol& arbol){
-    cout<<"Etiqueta del nodo: "<<arbol.Etiqueta(nodo)<<endl;
+    cout<<"Etiqueta del nodo: "<<arbol.Etiqueta(nodo)<<endl; //Impresion al principio por ser pre orden
     NodoPrincipal nh = arbol.HMI(nodo);
     while(nh != NodoNulo){
         ListPostR(nh,arbol);
@@ -38,7 +38,7 @@ void Algoritmos::ListPreR(NodoPrincipal nodo, Arbol& arbol){
     }
 }
 
-int Algoritmos::NumNiveles(Arbol& arbol){ 
+int Algoritmos::NumNiveles(Arbol& arbol){
     if(arbol.NumElem() >= 1){ //Arbol mas de la raiz
         NumNivelesR(arbol.Raiz(), 1,arbol);
     }
@@ -60,7 +60,7 @@ void Algoritmos::NumNivelesR(NodoPrincipal n, int nivel, Arbol &arbol){
     }
 }
 
-NodoPrincipal Algoritmos::AveriguarHI(Arbol& arbol, NodoPrincipal hermano){ 
+NodoPrincipal Algoritmos::AveriguarHI(Arbol& arbol, NodoPrincipal hermano){
     if(!arbol.Vacio()){
         Cola<NodoPrincipal> cola; //Recorrido por niveles. LLenamos la cola de nodos
         cola.Crear();
@@ -82,8 +82,7 @@ NodoPrincipal Algoritmos::AveriguarHI(Arbol& arbol, NodoPrincipal hermano){
     }
 }
 
-bool Algoritmos::
-Repetidos( Arbol &arbol){
+bool Algoritmos::Repetidos( Arbol &arbol){
     ListaCola<NodoPrincipal>lista;
     NodoPrincipal n;
     NodoPrincipal nh;
@@ -108,7 +107,7 @@ Repetidos( Arbol &arbol){
     return false;
 
 }
-bool Algoritmos::Busqueda(Arbol& arbol, int etiqueta){
+bool Algoritmos::Busqueda(Arbol& arbol, int etiqueta){ //Busqueda implementada en pre orden
     bool found = 0;
     if(!arbol.Vacio())
         found = BusquedaR(arbol.Raiz(), etiqueta, found,arbol);
@@ -131,7 +130,7 @@ bool Algoritmos::BusquedaR(NodoPrincipal actual,int etiqueta, bool node,Arbol& a
     }
 }
 void  Algoritmos::ListadoHijos(Arbol arbol,NodoPrincipal nodo){
-    NodoPrincipal n=arbol.HMI(nodo);
+    NodoPrincipal n=arbol.HMI(nodo); //Se busca el hmi del nodo enviado y en caso de no ser nulo, se listan sus hermanos
     while(n!=NodoNulo){
         cout<<arbol.Etiqueta(n)<<" ";
         n=arbol.HD(n);
@@ -158,34 +157,35 @@ void Algoritmos::ListarIesimoR(Arbol& arbol, int actual, NodoPrincipal nodo){
     }
 }
 
-void Algoritmos::Copiar(Arbol& arbol1){
-    Arbol arbolCopia;
+Arbol Algoritmos::Copiar(Arbol& arbol1, Arbol& arbolCopia){ //Se envia la copia como parametro para retornarla luego
     arbolCopia.Crear();
     if(arbol1.NumElem() != 0){
-        Cola<NodoPrincipal> cola1;
-        Cola<NodoPrincipal> cola2;
+        Cola<NodoPrincipal> cola1; //Cola arbol original
+        Cola<NodoPrincipal> cola2; //Cola arbol copia
         NodoPrincipal nodo1;
         NodoPrincipal nodo2;
         NodoPrincipal nodoH1;
         NodoPrincipal nodoH2;
         cola1.Crear();
         cola2.Crear();
-        arbolCopia.PonerRaiz(arbol1.Etiqueta(arbol1.Raiz()));
+        arbolCopia.PonerRaiz(arbol1.Etiqueta(arbol1.Raiz())); //Creamos la raiz de la copia con la otra etiqueta
         cola1.Encolar(arbol1.Raiz());
         cola2.Encolar(arbolCopia.Raiz());
-        while(!cola1.Vacia()){
+        while(!cola1.Vacia()){ //Recorrido por niveles
             nodo1 = cola1.Desencolar();
             nodo2 = cola2.Desencolar();
             nodoH1 = arbol1.HMI(nodo1);
             while(nodoH1 != NodoNulo){
-                arbolCopia.AgregarHijoI_esimo(nodo2, arbol1.Etiqueta(nodoH1), arbolCopia.NumHijos(nodo2)+1);
-                nodoH2 = arbolCopia.HMD(nodo2);
+                arbolCopia.AgregarHijoI_esimo(nodo2, arbol1.Etiqueta(nodoH1), arbolCopia.NumHijos(nodo2)+1); //Agregar al final del arbol
+                nodoH2 = arbolCopia.HMD(nodo2); //Metodo implementado Hijo Mas Derecho
                 cola1.Encolar(nodoH1);
                 cola2.Encolar(nodoH2);
                 nodoH1 = arbol1.HD(nodoH1);
             }
         }
     }
+    ListPost(arbolCopia); //Listar la copia
+    return arbolCopia;
 }
 
 void Algoritmos::ListadoPN(Arbol& arbol) {
@@ -193,9 +193,9 @@ void Algoritmos::ListadoPN(Arbol& arbol) {
   if (!arbol.Vacio()) {
     cola.Crear();
     cola.Encolar(arbol.Raiz());
-    while (!cola.Vacia()) {
+    while (!cola.Vacia()) { //Recorrido por niveles
       NodoPrincipal n = cola.Desencolar();
-      arbol.MostrarEtiqueta(n);
+     cout<<"Etiqueta del nodo: "<<arbol.Etiqueta(n)<<endl; //Listado
       NodoPrincipal nh = arbol.HMI(n);
       while (nh !=NodoNulo) {
         cola.Encolar(nh);
@@ -206,12 +206,12 @@ void Algoritmos::ListadoPN(Arbol& arbol) {
 }
 
 bool Algoritmos::Iguales(Arbol &arbol1, Arbol &arbol2) {
- Cola<NodoPrincipal> cola1;
- Cola<NodoPrincipal> cola2;
+ Cola<NodoPrincipal> cola1; //Cola arbol 1
+ Cola<NodoPrincipal> cola2; //Cola arbol 2
   if (!arbol1.Vacio() && !arbol2.Vacio()) {
     cola1.Crear();
     cola2.Crear();
-    if (arbol1.Etiqueta(arbol1.Raiz()) == arbol2.Etiqueta(arbol2.Raiz())) {
+    if (arbol1.Etiqueta(arbol1.Raiz()) == arbol2.Etiqueta(arbol2.Raiz())) { //Mientras las etiquetas sean iguales encolamos
       cola1.Encolar(arbol1.Raiz());
       cola2.Encolar(arbol2.Raiz());
       while (!cola1.Vacia() && !cola2.Vacia()) {
@@ -225,11 +225,11 @@ bool Algoritmos::Iguales(Arbol &arbol1, Arbol &arbol2) {
           nh1 = arbol1.HD(nh1);
           nh2 = arbol2.HD(nh2);
           if (arbol1.Etiqueta(nh1) != arbol2.Etiqueta(nh2) && nh2!=NodoNulo && nh1!=NodoNulo) {
-            return false;
+            return false;    //Si ninguno de los nodos es nulo, pero su etiqueta es diferente retornamos false
           }
         }
       }
-      return true;
+      return true; //Si no sale del while es porque todas las etiquetas son iguales
     }
   }
 }

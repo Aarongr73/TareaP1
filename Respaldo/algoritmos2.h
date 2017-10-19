@@ -4,8 +4,8 @@
 //#include"hijomasizq3.h"
 //#include"hijomasizq3.h"
 //#include"hijomasizquierdo.h"
-#include"ArbolLista.h"
-//#include "arreglopuntp.h"
+//#include"ArbolLista.h"
+#include "arreglopuntp.h"
 #include "Cola.h"
 #include "listacola.h"
 

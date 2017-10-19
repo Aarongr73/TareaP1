@@ -5,9 +5,9 @@
 using namespace std;
 
 struct Nodo{
-    char etiqueta;
+    int etiqueta;
     int nodoPadre;
-    Nodo(char etiq=' ',int padre=-1)
+    Nodo(int etiq=-1,int padre=-1)
         :etiqueta(etiq)
         ,nodoPadre(padre)
     {
@@ -34,15 +34,15 @@ class Arbol {
         int HD(int);
         int Padre(int);
         bool EsHoja(int nodo);
-        char Etiqueta(int nodo);
+        int Etiqueta(int nodo);
         int NumElem();
         int NumHijos(int nodo);
-        void ModificarEtiqueta(int nodo, char etiq);
-        int AgregarHijoI_esimo(int nodo, char etiq, int);
+        void ModificarEtiqueta(int nodo, int etiq);
+        int AgregarHijoI_esimo(int nodo, int etiq, int);
         void BorrarHoja(int);
-        void PonerRaiz(char);
-        int BuscarIndice(char etiq);
-        int Buscar(char etiqueta);
+        void PonerRaiz(int);
+        int BuscarIndice(int etiq);
+        int Buscar(int etiqueta);
         void MostrarEtiqueta(int nodo);
         int HMD(int);
 

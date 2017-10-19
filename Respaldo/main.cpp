@@ -1,11 +1,11 @@
 #include <iostream>
-#include "ArbolLista.h"
+//#include "ArbolLista.h"
 //#include "hijomasizquierdo.h"
 //#include "hijomasizq3.h"
 //#include "hijomasizq2.h"
 #include "algoritmos2.h"
 #include "Cola.h"
-//#include "arreglopuntp.h"
+#include "arreglopuntp.h"
 using namespace std;
 
 
@@ -147,25 +147,27 @@ do{
 
    }while(seleccion!=0);
 }
-void menuAlgoritmos(Arbol& arbol){
+void menuAlgoritmos(Arbol& arbol,Arbol& arbol2){
     int seleccion;
     Algoritmos algoritmos;
     do{
-       cout<<"Seleccion alguna de las siguientes opciones:"
+       cout<<"\nSeleccion alguna de las siguientes opciones:\n"
              "(1)Listado en Pre Orden\n"
              "(2)Listado en Post Orden\n"
              "(3)Listado por Niveles\n"
-             "(4)FALTA UNOOOOOOOOOOOOOOOOOOOOOO\n"
+             "(4)Iguales?\n"
              "(5)Buscar etiqueta\n"
              "(6)Profundidad\n"
              "(7)Numero de niveles en Pre Orden\n"
              "(8)Numero de niveles en recorrido por niveles\n"
              "(9))Listado de Hijos\n"
-             "(10)Hijo Izquierdo\n"
-             "(11)Listar Iesimo algo\n"
+             "(10)Hermano Izquierdo\n"
+             "(11)Listar Iesimo nivel\n"
              "(12)Hay repetidos?\n"
              "(13)Eliminar un sub Arbol\n"
-             "(14)Copiar el arbol actual\n";
+             "(14)Copiar el arbol actual\n"
+             "(0)SALIR\n";
+       cin>>seleccion;
        switch(seleccion){
        case 1:
            algoritmos.ListPre(arbol);
@@ -177,6 +179,7 @@ void menuAlgoritmos(Arbol& arbol){
            algoritmos.ListadoPN(arbol);
            break;
        case 4:
+           algoritmos.Iguales(arbol,arbol2);
            break;
        case 5:
        {
@@ -191,23 +194,78 @@ void menuAlgoritmos(Arbol& arbol){
        }
            break;
        case 6:
+       {
+           int prof;
+           int etiqueta;
+           cout<<"Introduzca la etiqueta a buscar";
+           cin>>etiqueta;
+           prof=algoritmos.Profundidad(arbol.Buscar(etiqueta),arbol);
+           cout<<"La profundidad del nodo es de : "<<prof<<endl;
+       }
 
            break;
        case 7:
+       {
+           int niveles=algoritmos.NumNiveles(arbol);
+           cout<<"El numeros de niveles es: "<<niveles<<endl;
+       }
            break;
        case 8:
+       {
+           int niveles=algoritmos.NumnNiveles(arbol);
+           cout<<"El numeros de niveles es: "<<niveles<<endl;
+       }
            break;
        case 9:
+       {
+           int padre;
+           cout<<"Introduzca la etiqueta del padre\n";
+           cin>>padre;
+           algoritmos.ListadoHijos(arbol,arbol.Buscar(padre));
+       }
            break;
        case 10:
+       {
+           int hermano;
+           NodoPrincipal HI;
+           cout<<"Introduzca la etiqueta del hermano\n";
+           cin>>hermano;
+           HI=algoritmos.AveriguarHI(arbol,arbol.Buscar(hermano));
+           cout<<arbol.Etiqueta(HI)<<"es el hermano izquierdo de "<< hermano<<endl;
+       }
            break;
        case 11:
+       {
+           int nivel;
+           cout<<"selecciones el nivel a buscar\n";
+           cin>>nivel;
+           algoritmos.ListarIesimo(arbol,nivel);
+       }
            break;
        case 12:
+       {
+           bool repetidos=algoritmos.Repetidos(arbol);
+           if(repetidos)
+               cout<<"HAY REPETIDOS!\N";
+           else
+               cout<<"NO HAY REPETIDOS\N";
+       }
            break;
        case 13:
+       {
+           int raiz;
+           cout<<"Seleccione el nodo donde comienza el sub arbol a borrar\n";
+           cin>>raiz;
+           algoritmos.BorrarSubArbol(arbol.Buscar(raiz),arbol);
+       }
            break;
        case 14:
+       {
+           Arbol copia;
+           copia.Crear();
+           algoritmos.Copiar(arbol,copia);
+       }
+
            break;
        default:
            break;
@@ -218,11 +276,11 @@ void menuAlgoritmos(Arbol& arbol){
 
 }
 
-void menu(Arbol &arbol){
+void menu(Arbol &arbol,Arbol& arbol2){
 int seleccion;
 do{
     cout<<"Puede seleccionar entre Arbol(1) "
-          "Cola(2) (0)Salir\n";
+          "Algoritmos(2) (0)Salir\n";
     cin>>seleccion;
 
     switch(seleccion){
@@ -233,7 +291,7 @@ do{
             DesplegarMenuArbol(arbol);
         break;
     case 2:
-        menuAlgoritmos(arbol);
+        menuAlgoritmos(arbol,arbol2);
         break;
 
     }
@@ -242,31 +300,42 @@ do{
 
 int main()
 {
-      /* Cola cola;
-      cola.Crear();
-      cola.Encolar(8);
-      cola.Desencolar();*/
-    //  menu();
+    /* Cola cola;
+          cola.Crear();
+          cola.Encolar(8);
+          cola.Desencolar();*/
+        //  menu();
 
-    Arbol arbol;
-    Arbol arbol2;
-    Algoritmos alg;
-    NodoPrincipal x;
-    arbol.Crear();
-    arbol.PonerRaiz(1);
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar(1),2,1);
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar(1),3,2);
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar(3),4,1);
-    x=arbol.AgregarHijoI_esimo(arbol.Buscar(3),5,2);
-    alg.NumNiveles(arbol);
-    alg.ListPost(arbol);
-    alg.BorrarSubArbol(arbol.Buscar(3),arbol);
-    alg.ListadoHijos(arbol,arbol.Buscar(1));
+        Arbol arbolP1;
+        Arbol arbolP2;
+        Arbol arbol2; //Copia de cualquiera de los árboles
+        Algoritmos alg;
+       // NodoPrincipal x;
+        arbolP1.PonerRaiz(1);
+        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(1), 5, 1);
+        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(5), 8, 1);
+        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(5), 2, 2);
+        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(5), 3, 3);
+        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(2), 0, 1);
+        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(3), 11, 1);
+        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(3), 9, 2);
+
+        arbolP2.PonerRaiz(2);
+        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(2), 3, 1);
+        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(3), 7, 1);
+        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(3), 1, 2);
+        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(3), 5, 3);
+        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(1), 11, 1);
+        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(5), 10, 1);
+        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(5), 9, 2);
+
+        menu(arbolP1,arbolP2);
 
 
 
-   arbol2=alg.Copiar(arbol,arbol2);
-
+        cout<<"Copia del arbol"<<endl;
+        alg.Copiar(arbolP1,arbol2);
+       // alg.ListPost(arbol2);
 
 
 

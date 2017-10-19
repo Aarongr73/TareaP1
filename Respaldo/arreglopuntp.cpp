@@ -2,7 +2,7 @@
 
 int NodoNulo=-1;
 Arbol::Arbol(){
-    PonerRaiz(' ');
+    PonerRaiz(0);
     Arreglo[0].nodoPadre = 0;
     numNodos = 1;
 }
@@ -60,7 +60,8 @@ bool Arbol::EsHoja(int nodo){
     }
 }
 
-char Arbol::Etiqueta(int nodo) {
+int Arbol::Etiqueta(int nodo) {
+    int num=Arreglo[nodo].etiqueta;
     return Arreglo[nodo].etiqueta;
 }
 
@@ -81,11 +82,11 @@ int Arbol::NumHijos(int nodo){
     return hijos;
 }
 
-void Arbol::ModificarEtiqueta(int nodo, char etiq){
+void Arbol::ModificarEtiqueta(int nodo, int etiq){
     Arreglo[nodo].etiqueta = etiq;
 }
 
-int Arbol::AgregarHijoI_esimo(int nodo, char etiq, int p){
+int Arbol::AgregarHijoI_esimo(int nodo, int etiq, int p){
     int pos =nodo;
     int i = pos;
     int numhij=NumHijos(nodo);
@@ -136,19 +137,19 @@ void Arbol::BorrarHoja(int n){
      --numNodos;
 }
 
-void Arbol::PonerRaiz(char e){
+void Arbol::PonerRaiz(int e){
     Arreglo[0].etiqueta = e;
     Arreglo[0].nodoPadre=-1;
 }
 
-int Arbol::BuscarIndice(char etiq) {
+int Arbol::BuscarIndice(int etiq) {
     int i = 0;
     while (Arreglo[i].etiqueta != etiq) {
         ++i;
     }
     return i;
 }
-int Arbol::Buscar(char e){
+int Arbol::Buscar(int e){
     int i = BuscarIndice(e);
     return i;
 }
