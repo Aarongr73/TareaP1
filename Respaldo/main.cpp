@@ -312,19 +312,19 @@ int main()
           cola.Desencolar();*/
         //  menu();
 
-        Arbol arbolP1;
+        Arbol arbol;
         Arbol arbolP2;
         Arbol arbol2; //Copia de cualquiera de los árboles
         Algoritmos alg;
        // NodoPrincipal x;
-        arbolP1.PonerRaiz(1);
-        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(1), 5, 1);
-        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(5), 8, 1);
-        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(5), 2, 2);
-        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(5), 3, 3);
-        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(2), 0, 1);
-        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(3), 11, 1);
-        arbolP1.AgregarHijoI_esimo(arbolP1.Buscar(3), 9, 2);
+        arbol.PonerRaiz(1);
+        arbol.AgregarHijoI_esimo(arbol.Buscar(1), 5, 1);
+        arbol.AgregarHijoI_esimo(arbol.Buscar(5), 8, 1);
+        arbol.AgregarHijoI_esimo(arbol.Buscar(5), 2, 2);
+        arbol.AgregarHijoI_esimo(arbol.Buscar(5), 3, 3);
+        arbol.AgregarHijoI_esimo(arbol.Buscar(2), 0, 1);
+        arbol.AgregarHijoI_esimo(arbol.Buscar(3), 11, 1);
+        arbol.AgregarHijoI_esimo(arbol.Buscar(3), 9, 2);
 
         arbolP2.PonerRaiz(2);
         arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(2), 3, 1);
@@ -335,7 +335,7 @@ int main()
         arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(5), 10, 1);
         arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(5), 9, 2);
 
-        menu(arbolP1,arbolP2);
+        menu(arbol,arbolP2);
 
 
 
