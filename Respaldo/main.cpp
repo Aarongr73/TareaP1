@@ -1,12 +1,48 @@
 #include <iostream>
 //#include "ArbolLista.h"
 //#include "hijomasizquierdo.h"
-//#include "hijomasizq3.h"
+#include "hijomasizq2.h"
 //#include "hijomasizq2.h"
 #include "algoritmos2.h"
 #include "Cola.h"
-#include "arreglopuntp.h"
+//#include "arreglopuntp.h"
 using namespace std;
+
+Arbol ArbolVertical(int cant){
+    Arbol vertical;
+    vertical.Crear();
+    vertical.PonerRaiz(1);
+    for(int i=2;i<=cant;++i){
+        vertical.AgregarHijoI_esimo(vertical.Buscar(i-1),i,1);
+    }
+    return vertical;
+}
+Arbol ArbolBalanceado(int cant){
+    Arbol balanceado;
+    balanceado.Crear();
+    balanceado.PonerRaiz(1);
+    int i=1;
+    int nodo=1;
+    while(i<10000){
+        i++;
+        balanceado.AgregarHijoI_esimo(balanceado.Buscar(nodo),i,1);
+        i++;
+        balanceado.AgregarHijoI_esimo(balanceado.Buscar(nodo),i,2);
+        ++nodo;
+    }
+
+    return balanceado;
+}
+Arbol HijoDeRaiz(int cant){
+    Arbol HRaiz;
+    HRaiz.Crear();
+    HRaiz.PonerRaiz(1);
+    for(int i=1;i<cant;++i){
+        HRaiz.AgregarHijoI_esimo(HRaiz.Buscar(1),i,i);
+    }
+    return HRaiz;
+}
+
 
 
 void DesplegarMenuArbol(Arbol& arbol){
@@ -313,31 +349,11 @@ int main()
         //  menu();
 
         Arbol arbol;
-        Arbol arbolP2;
-        Arbol arbol2; //Copia de cualquiera de los árboles
-        Algoritmos alg;
-       // NodoPrincipal x;
-        arbol.PonerRaiz(1);
-        arbol.AgregarHijoI_esimo(arbol.Buscar(1), 5, 1);
-        arbol.AgregarHijoI_esimo(arbol.Buscar(5), 8, 1);
-        arbol.AgregarHijoI_esimo(arbol.Buscar(5), 2, 2);
-        arbol.AgregarHijoI_esimo(arbol.Buscar(5), 3, 3);
-        arbol.AgregarHijoI_esimo(arbol.Buscar(2), 0, 1);
-        arbol.AgregarHijoI_esimo(arbol.Buscar(3), 11, 1);
-        arbol.AgregarHijoI_esimo(arbol.Buscar(3), 9, 2);
-
-        arbolP2.PonerRaiz(2);
-        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(2), 3, 1);
-        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(3), 7, 1);
-        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(3), 1, 2);
-        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(3), 5, 3);
-        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(1), 11, 1);
-        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(5), 10, 1);
-        arbolP2.AgregarHijoI_esimo(arbolP2.Buscar(5), 9, 2);
-
-        menu(arbol,arbolP2);
-
-
+        Arbol arbol2;
+        Arbol arbol3;
+        arbol=ArbolVertical(100000);
+        arbol2=ArbolBalanceado(100000);
+        arbol3=HijoDeRaiz(100000);
 
 
 
