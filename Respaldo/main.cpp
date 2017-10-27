@@ -1,11 +1,14 @@
 #include <iostream>
 //#include "ArbolLista.h"
-//#include "hijomasizquierdo.h"
-#include "hijomasizq2.h"
+#include "hijomasizquierdo.h"
+//#include "hijomasizq3.h"
 //#include "hijomasizq2.h"
 #include "algoritmos2.h"
 #include "Cola.h"
 //#include "arreglopuntp.h"
+
+#include <time.h>
+#include <stdio.h>
 using namespace std;
 
 Arbol ArbolVertical(int cant){
@@ -351,9 +354,16 @@ int main()
         Arbol arbol;
         Arbol arbol2;
         Arbol arbol3;
-        arbol=ArbolVertical(100000);
-        arbol2=ArbolBalanceado(100000);
-        arbol3=HijoDeRaiz(100000);
+        arbol=ArbolVertical(10000);
+        arbol2=ArbolBalanceado(10000);
+        arbol3=HijoDeRaiz(10000);
+
+        clock_t start = clock();
+        arbol3=HijoDeRaiz(10000);
+        clock_t stop = clock();
+        double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+        printf("Time elapsed in ms: %f", elapsed);
+
 
 
 
