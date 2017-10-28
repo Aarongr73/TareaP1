@@ -117,6 +117,7 @@ bool Algoritmos::Busqueda(Arbol& arbol, int etiqueta){ //Busqueda implementada e
 
 bool Algoritmos::BusquedaR(NodoPrincipal actual,int etiqueta, bool node,Arbol& arbol){
     if(arbol.Etiqueta(actual)==etiqueta){
+        cout<<"encontrado"<<endl;
          return true;
     }
 
@@ -184,7 +185,7 @@ Arbol Algoritmos::Copiar(Arbol& arbol1, Arbol& arbolCopia){ //Se envia la copia 
             }
         }
     }
-    ListPost(arbolCopia); //Listar la copia
+
     return arbolCopia;
 }
 

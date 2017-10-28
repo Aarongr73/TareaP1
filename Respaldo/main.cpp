@@ -1,4 +1,5 @@
 #include <iostream>
+#include<windows.h>
 //#include "ArbolLista.h"
 #include "hijomasizquierdo.h"
 //#include "hijomasizq3.h"
@@ -9,24 +10,27 @@
 
 #include <time.h>
 #include <stdio.h>
-using namespace std;
+#include <chrono>
 
-Arbol ArbolVertical(int cant){
-    Arbol vertical;
-    vertical.Crear();
+
+using namespace std;
+using namespace std::chrono;
+
+void ArbolVertical(long cant, Arbol& vertical){
     vertical.PonerRaiz(1);
-    for(int i=2;i<=cant;++i){
+    for(long i=2;i<cant;++i){
         vertical.AgregarHijoI_esimo(vertical.Buscar(i-1),i,1);
     }
-    return vertical;
+
 }
-Arbol ArbolBalanceado(int cant){
-    Arbol balanceado;
-    balanceado.Crear();
+void ArbolBalanceado(long cant, Arbol& balanceado){
+  //  Arbol balanceado;
+    //balanceado.Crear();
     balanceado.PonerRaiz(1);
-    int i=1;
-    int nodo=1;
-    while(i<10000){
+    long i=1;
+    long nodo=1;
+    while(i<cant){
+        cout<<nodo<<endl;
         i++;
         balanceado.AgregarHijoI_esimo(balanceado.Buscar(nodo),i,1);
         i++;
@@ -34,22 +38,21 @@ Arbol ArbolBalanceado(int cant){
         ++nodo;
     }
 
-    return balanceado;
 }
-Arbol HijoDeRaiz(int cant){
-    Arbol HRaiz;
-    HRaiz.Crear();
+void HijoDeRaiz(long cant, Arbol& HRaiz){
+  //  Arbol HRaiz;
+    //HRaiz.Crear();
     HRaiz.PonerRaiz(1);
-    for(int i=1;i<cant;++i){
-        HRaiz.AgregarHijoI_esimo(HRaiz.Buscar(1),i,i);
+    for(long i=2;i<cant;++i){
+        cout<<i<<endl;
+        HRaiz.AgregarHijoI_esimo(HRaiz.Buscar(1),i,1);
     }
-    return HRaiz;
 }
 
 
 
 void DesplegarMenuArbol(Arbol& arbol){
-    int seleccion;
+    long seleccion;
 
 do{
         cout<<"Seleccione una opcion\n"
@@ -72,8 +75,8 @@ do{
          break;
         case 1:
         {
-            int raiz;
-            cout<<"introduzca un valor para la raiz";
+            long raiz;
+            cout<<"longroduzca un valor para la raiz";
             cin>>raiz;
             arbol.PonerRaiz(raiz);
             cout<<"Agregada la raiz!\n";
@@ -81,12 +84,12 @@ do{
         break;
         case 2:
         {
-            int etiquetaPadre;
-            int etiquetaHijo;
-            int pos;
-            cout<<"Introduzca el la etiqueta de padre\n";
+            long etiquetaPadre;
+            long etiquetaHijo;
+            long pos;
+            cout<<"longroduzca el la etiqueta de padre\n";
             cin>>etiquetaPadre;
-            cout<<"Introduzca la etiqueta del hijo\n";
+            cout<<"longroduzca la etiqueta del hijo\n";
             cin>>etiquetaHijo;
             cout<<"seleccione donde\n";
             cin>>pos;
@@ -95,17 +98,17 @@ do{
             break;
         case 3:
         {
-            int nodoABorrar;
-            cout<<"Intrduzca la etiqueta de la hoja a borra\n";
+            long nodoABorrar;
+            cout<<"longrduzca la etiqueta de la hoja a borra\n";
             cin>>nodoABorrar;
             arbol.BorrarHoja(arbol.Buscar(nodoABorrar));
         }
         break;
         case 4:
         {
-           int nodo;
+           long nodo;
            NodoPrincipal hmi;
-           cout<<"Introduzca la etiqueta del nodo \n";
+           cout<<"longroduzca la etiqueta del nodo \n";
            cin>>nodo;
            hmi=arbol.HMI(arbol.Buscar(nodo));
            cout<<"Hijo mas izquierdo es: ";
@@ -116,8 +119,8 @@ do{
         case 5:
         {
             NodoPrincipal hder;
-            int hizq;
-            cout<<"Introduzca la etiqueta del nodo\n";
+            long hizq;
+            cout<<"longroduzca la etiqueta del nodo\n";
             cin>>hizq;
             hder=arbol.HD(arbol.Buscar(hizq));
         }
@@ -141,8 +144,8 @@ do{
         case 8:
         {
             NodoPrincipal padre;
-            int nodoHijo;
-            cout<<"Introduzca la etiqueta del nodo hijo\n";
+            long nodoHijo;
+            cout<<"longroduzca la etiqueta del nodo hijo\n";
             cin>>nodoHijo;
             padre=arbol.Padre(arbol.Buscar(nodoHijo));
             cout<<"El padre de "<< nodoHijo+" es: ";
@@ -152,27 +155,27 @@ do{
         break;
         case 9:
          {
-            int nuevaEtiqueta;
-            int nodoActual;
-            cout<<"Introduzaca la etiqueta del nodo a modificar\n";
+            long nuevaEtiqueta;
+            long nodoActual;
+            cout<<"longroduzaca la etiqueta del nodo a modificar\n";
             cin>>nodoActual;
-            cout<<"Introduzca la nueva etiqueta\n";
+            cout<<"longroduzca la nueva etiqueta\n";
             cin>> nuevaEtiqueta;
             arbol.ModificarEtiqueta(arbol.Buscar(nodoActual),nuevaEtiqueta);
         }
         break;
         case 10:
         {
-            int numelem;
+            long numelem;
             numelem=arbol.NumElem();
             cout<<"La cantidad de elementos es de: "<<numelem<<"\n";
         }
         break;
         case 11:
         {
-            int numhijos;
-            int elpadre;
-            cout<<"Introduzca la etiquta del nodo padre\n";
+            long numhijos;
+            long elpadre;
+            cout<<"longroduzca la etiquta del nodo padre\n";
             cin>>elpadre;
             numhijos=arbol.NumHijos(arbol.Buscar(elpadre));
             arbol.MostrarEtiqueta(arbol.Buscar(elpadre));
@@ -187,7 +190,7 @@ do{
    }while(seleccion!=0);
 }
 void menuAlgoritmos(Arbol& arbol,Arbol& arbol2){
-    int seleccion;
+    long seleccion;
     Algoritmos algoritmos;
     do{
        cout<<"\nSeleccion alguna de las siguientes opciones:\n"
@@ -228,8 +231,8 @@ void menuAlgoritmos(Arbol& arbol,Arbol& arbol2){
            break;
        case 5:
        {
-           int etiqueta;
-           cout<<"Introduzca la etiqueta a buscar\n";
+           long etiqueta;
+           cout<<"longroduzca la etiqueta a buscar\n";
            cin>>etiqueta;
            bool found=algoritmos.Busqueda(arbol,etiqueta);
            if(found)
@@ -240,9 +243,9 @@ void menuAlgoritmos(Arbol& arbol,Arbol& arbol2){
            break;
        case 6:
        {
-           int prof;
-           int etiqueta;
-           cout<<"Introduzca la etiqueta a buscar";
+           long prof;
+           long etiqueta;
+           cout<<"longroduzca la etiqueta a buscar";
            cin>>etiqueta;
            prof=algoritmos.Profundidad(arbol.Buscar(etiqueta),arbol);
            cout<<"La profundidad del nodo es de : "<<prof<<endl;
@@ -251,29 +254,29 @@ void menuAlgoritmos(Arbol& arbol,Arbol& arbol2){
            break;
        case 7:
        {
-           int niveles=algoritmos.NumNiveles(arbol);
+           long niveles=algoritmos.NumNiveles(arbol);
            cout<<"El numeros de niveles es: "<<niveles<<endl;
        }
            break;
        case 8:
        {
-           int niveles=algoritmos.NumnNiveles(arbol);
+           long niveles=algoritmos.NumnNiveles(arbol);
            cout<<"El numeros de niveles es: "<<niveles<<endl;
        }
            break;
        case 9:
        {
-           int padre;
-           cout<<"Introduzca la etiqueta del padre\n";
+           long padre;
+           cout<<"longroduzca la etiqueta del padre\n";
            cin>>padre;
            algoritmos.ListadoHijos(arbol,arbol.Buscar(padre));
        }
            break;
        case 10:
        {
-           int hermano;
+           long hermano;
            NodoPrincipal HI;
-           cout<<"Introduzca la etiqueta del hermano\n";
+           cout<<"longroduzca la etiqueta del hermano\n";
            cin>>hermano;
            HI=algoritmos.AveriguarHI(arbol,arbol.Buscar(hermano));
            cout<<arbol.Etiqueta(HI)<<"es el hermano izquierdo de "<< hermano<<endl;
@@ -281,7 +284,7 @@ void menuAlgoritmos(Arbol& arbol,Arbol& arbol2){
            break;
        case 11:
        {
-           int nivel;
+           long nivel;
            cout<<"selecciones el nivel a buscar\n";
            cin>>nivel;
            algoritmos.ListarIesimo(arbol,nivel);
@@ -298,7 +301,7 @@ void menuAlgoritmos(Arbol& arbol,Arbol& arbol2){
            break;
        case 13:
        {
-           int raiz;
+           long raiz;
            cout<<"Seleccione el nodo donde comienza el sub arbol a borrar\n";
            cin>>raiz;
            algoritmos.BorrarSubArbol(arbol.Buscar(raiz),arbol);
@@ -322,7 +325,7 @@ void menuAlgoritmos(Arbol& arbol,Arbol& arbol2){
 }
 
 void menu(Arbol &arbol,Arbol& arbol2){
-int seleccion;
+long seleccion;
 do{
     cout<<"Puede seleccionar entre Arbol(1) "
           "Algoritmos(2) (0)Salir\n";
@@ -354,16 +357,27 @@ int main()
         Arbol arbol;
         Arbol arbol2;
         Arbol arbol3;
-        arbol=ArbolVertical(10000);
-        arbol2=ArbolBalanceado(10000);
-        arbol3=HijoDeRaiz(10000);
+        //ArbolVertical(30000,arbol);
+        ArbolBalanceado(30000,arbol2);
+       // HijoDeRaiz(30000,arbol3);
+        Algoritmos alg;
 
-        clock_t start = clock();
-        arbol3=HijoDeRaiz(10000);
+       /* clock_t start = clock();
+        //arbol2.Padre(Nprueba);
+     //   alg.Busqueda(arbol2, 99999);
+          alg.Iguales(arbol2,arbol2);
+   //     cout<<arbol2.Etiqueta(arbol2.Padre(arbol2.Buscar(99999)));
         clock_t stop = clock();
-        double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-        printf("Time elapsed in ms: %f", elapsed);
-
+        double elapsed = ((double)(stop - start) / CLOCKS_PER_SEC);
+       */// printf("Time elapsed in ms: %f", elapsed);
+        NodoPrincipal nodo=arbol2.Buscar(29999);
+        LARGE_INTEGER start, finish, freq;
+        QueryPerformanceFrequency(&freq);
+        QueryPerformanceCounter(&start);
+        arbol2.Padre(nodo);
+        QueryPerformanceCounter(&finish);
+        std::cout << "Execution took "
+            << ((finish.QuadPart - start.QuadPart) / (double)freq.QuadPart) << std::endl;
 
 
 

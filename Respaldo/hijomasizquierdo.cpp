@@ -7,7 +7,7 @@
 using namespace std;
 NodoPrincipal NodoNulo=0;
 
-Arbol::Arbol(Node* raiz, int elementos)
+Arbol::Arbol(Node* raiz, long elementos)
     :raiz(raiz)
     ,Elementos(elementos)
 {
@@ -58,12 +58,12 @@ Node *Arbol::HD(Node* nodo){
     }
 }
 
-void Arbol::PonerRaiz(int etiqueta){
+void Arbol::PonerRaiz(long etiqueta){
     this->raiz=new Node();
     raiz->Etiqueta=etiqueta;
     this->Elementos++;
 }
-Node *Arbol::AgregarHijoI_esimo(Node *padre, int etiqueta, int pos){
+Node *Arbol::AgregarHijoI_esimo(Node *padre, long etiqueta, long pos){
     Node* nuevoHijo=new Node();
     nuevoHijo->Etiqueta=etiqueta;
     if(padre->Hmi==0){
@@ -79,7 +79,7 @@ Node *Arbol::AgregarHijoI_esimo(Node *padre, int etiqueta, int pos){
             }
             Actual->HD=nuevoHijo;
         }else{
-            int cont=1;
+            long cont=1;
             Node* previo=0;
             Node* Actual=padre->Hmi;
             while(cont<=pos-1){
@@ -94,14 +94,14 @@ Node *Arbol::AgregarHijoI_esimo(Node *padre, int etiqueta, int pos){
     }
     this->Elementos++;
 }
-Node* Arbol::Buscar(int etiqueta){
+Node* Arbol::Buscar(long etiqueta){
     Node* nodo=0;
     if(!this->Vacio())
         nodo=PreOrdenBusqueda(this->raiz,etiqueta,nodo);
     return nodo;
 
 }
-Node* Arbol::PreOrdenBusqueda(Node* Actual, int etiqueta, Node *nodo){
+Node* Arbol::PreOrdenBusqueda(Node* Actual, long etiqueta, Node *nodo){
     if(Actual->Etiqueta==etiqueta){
          return Actual;
     }
@@ -139,13 +139,13 @@ void Arbol::BorrarHoja(Node *nodo){
     if(isRaiz(nodo)){
         Node* nodoAux;
         this->raiz=0;
-        delete nodoAux;
+        //delete nodoAux;
     }else{
     if(padre->Hmi==nodo){
         Node* nodoAux=padre->Hmi;
         padre->Hmi=nodoAux->HD;
         nodoAux->HD=0;
-        delete nodoAux;
+        //delete nodoAux;
     }else{
         bool NoEliminado=true;
         Node* Actual=padre->Hmi->HD;
@@ -159,7 +159,7 @@ void Arbol::BorrarHoja(Node *nodo){
                 }else{
                     Previo->HD=0;
                 }
-                delete nodoAux;
+                //delete nodoAux;
                 NoEliminado=false;
             }
             Previo=Actual;
@@ -175,11 +175,13 @@ bool Arbol::isRaiz(Node* nodo){
     }
     return false;
 }
-int Arbol::Etiqueta(Node *nodo){
+long Arbol::Etiqueta(Node *nodo){
+    if(nodo==NodoNulo)
+        return 0;
     return nodo->Etiqueta;
 }
-int Arbol::NumHijos(Node* nodo){
-    int count=0;
+long Arbol::NumHijos(Node* nodo){
+    long count=0;
     if(nodo->Hmi==0){
         return 0;
     }else{
@@ -191,10 +193,10 @@ int Arbol::NumHijos(Node* nodo){
     }
     return count;
 }
-int Arbol::NumElem(){
+long Arbol::NumElem(){
    return this->Elementos;
 }
-void Arbol::ModificarEtiqueta(Node* nodo,int etiqueta){
+void Arbol::ModificarEtiqueta(Node* nodo, long etiqueta){
     nodo->Etiqueta=etiqueta;
 }
 Node *Arbol::Raiz(){

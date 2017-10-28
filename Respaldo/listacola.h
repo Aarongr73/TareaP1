@@ -1,6 +1,6 @@
 #ifndef LISTACOLA_H
 #define LISTACOLA_H
- #define MAX 10000
+ #define MAX 1000000
 
 
 

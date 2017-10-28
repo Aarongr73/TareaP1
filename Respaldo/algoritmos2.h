@@ -23,7 +23,7 @@ public:
     void ListarIesimo(Arbol&, int);
 //    void Agrega();
     void ListPre(Arbol& arbol);
-    bool Repetidos(Arbol &arbol);
+    bool Repetidos(Arbol& arbol);
     bool BusquedaR(NodoPrincipal actual, int etiqueta, bool node, Arbol &arbol);
     bool Busqueda(Arbol&,int etiqueta);
     void ListadoHijos(Arbol arbol,NodoPrincipal nodo);
